@@ -1,5 +1,5 @@
 import { StatusBar } from "expo-status-bar";
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { StyleSheet, Text, View } from "react-native";
 import { Header } from "./components/Header";
 import { NavigationContainer } from "@react-navigation/native";
@@ -11,17 +11,19 @@ import { WeekScreen } from "./components/WeekScreen";
 import { InfoScreen } from "./components/InfoScreen";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { userContext } from "./contexts/userContext";
+import { SignInOverlay } from "./components/SignInOverlay";
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 
 export default function App() {
-  const user = null;
+  const [user, setUser] = useState("Jay");
 
   return (
     <userContext.Provider value={user}>
       <NavigationContainer>
         <Header style={{ justifyContent: "center" }} />
+        <SignInOverlay />
         <Tab.Navigator>
           <Tab.Screen name="Home" component={HomeScreen} />
           <Tab.Screen name="Your week" component={WeekScreen} />
