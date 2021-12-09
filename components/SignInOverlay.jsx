@@ -38,7 +38,7 @@ export const SignInOverlay = () => {
                     }}
                     style={{ height: 30, borderColor: "gray", borderWidth: 1 }}
                 ></TextInput>
-                <Button onPress={handlePress}>Submit</Button>
+                <Button title="Submit" onPress={handlePress}></Button>
             </Overlay>
         </View>
     );
