@@ -17,8 +17,7 @@ const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 
 export default function App() {
-    const [user, updateUser] = useState(null);
-    console.log(user);
+    const [user, updateUser] = useState("bob");
 
     return (
         <userContext.Provider value={{ user, updateUser }}>
