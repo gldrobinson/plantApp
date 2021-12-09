@@ -4,7 +4,6 @@ import { StyleSheet, Text, View } from "react-native";
 import { Header } from "./components/Header";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { NavBar, ProfileScreen } from "./components/NavBar";
 import { BadgesScreen } from "./components/BadgesScreen";
 import { HomeScreen } from "./components/HomeScreen";
 import { WeekScreen } from "./components/WeekScreen";
@@ -17,37 +16,38 @@ const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 
 export default function App() {
-  const [user, setUser] = useState("Jay");
+    const [user, updateUser] = useState(null);
+    console.log(user);
 
-  return (
-    <userContext.Provider value={user}>
-      <NavigationContainer>
-        <Header style={{ justifyContent: "center" }} />
-        <SignInOverlay />
-        <Tab.Navigator>
-          <Tab.Screen name="Home" component={HomeScreen} />
-          <Tab.Screen name="Your week" component={WeekScreen} />
-          <Tab.Screen name="Badges" component={BadgesScreen} />
-          <Tab.Screen name="Info" component={InfoScreen} />
-        </Tab.Navigator>
+    return (
+        <userContext.Provider value={{ user, updateUser }}>
+            <NavigationContainer>
+                <Header style={{ justifyContent: "center" }} />
+                <SignInOverlay />
+                <Tab.Navigator>
+                    <Tab.Screen name="Home" component={HomeScreen} />
+                    <Tab.Screen name="Your week" component={WeekScreen} />
+                    <Tab.Screen name="Badges" component={BadgesScreen} />
+                    <Tab.Screen name="Info" component={InfoScreen} />
+                </Tab.Navigator>
 
-        {/* <Stack.Navigator>
+                {/* <Stack.Navigator>
         { <View style={styles.container}> */}
-        {/* <Stack.Screen name="Home" component={NavBar} /> */}
-        {/* <Stack.Screen name="Account" component={ProfileScreen} /> */}
-        {/* <Stack.Screen name="Badges" component={BadgesScreen} /> */}
-        {/* </View> */}
-        {/* </Stack.Navigator> */}
-      </NavigationContainer>
-    </userContext.Provider>
-  );
+                {/* <Stack.Screen name="Home" component={NavBar} /> */}
+                {/* <Stack.Screen name="Account" component={ProfileScreen} /> */}
+                {/* <Stack.Screen name="Badges" component={BadgesScreen} /> */}
+                {/* </View> */}
+                {/* </Stack.Navigator> */}
+            </NavigationContainer>
+        </userContext.Provider>
+    );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
-  },
+    container: {
+        flex: 1,
+        backgroundColor: "#fff",
+        alignItems: "center",
+        justifyContent: "center",
+    },
 });
