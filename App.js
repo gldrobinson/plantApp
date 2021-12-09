@@ -11,6 +11,7 @@ import { InfoScreen } from "./components/InfoScreen";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { userContext } from "./contexts/userContext";
 import { SignInOverlay } from "./components/SignInOverlay";
+import { Logout } from "./components/Logout";
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -23,6 +24,7 @@ export default function App() {
         <userContext.Provider value={{ user, updateUser }}>
             <NavigationContainer>
                 <Header style={{ justifyContent: "center" }} />
+                <Logout />
                 <SignInOverlay />
                 <Tab.Navigator>
                     <Tab.Screen name="Home" component={HomeScreen} />
