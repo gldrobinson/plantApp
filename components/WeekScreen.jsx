@@ -1,5 +1,12 @@
 import React from "react";
-import { Button, ScrollView, Text, View, Image } from "react-native";
+import {
+    Button,
+    ScrollView,
+    Text,
+    View,
+    Image,
+    StyleSheet,
+} from "react-native";
 // import banana from "../test-images";
 // import apple from "../test-images";
 // import orange from "../test-images";
@@ -7,30 +14,45 @@ import { Button, ScrollView, Text, View, Image } from "react-native";
 // import{apple}from
 // import{orange}from
 
-export const WeekScreen = ({ navigation }) => {
+export const WeekScreen = () => {
     return (
         <View>
-            <Text>Your week so far</Text>;
             <ScrollView>
-                <Text>1</Text>
-                <Text>2</Text>
-                <Text>3</Text>
-                <Text>1</Text>
-                <Text>2</Text>
-                <Text>3</Text>
-                <Text>1</Text>
-                <Text>2</Text>
-                <Text>3</Text>
-                <Text>1</Text>
-                <Text>2</Text>
-                <Text>3</Text>
-                <Text>1</Text>
-                <Text>2</Text>
-                <Text>3</Text>
-                <Text>1</Text>
-                <Text>2</Text>
-                <Text>3</Text>
+                <Text>Your week so far</Text>
+
+                <ScrollView horizontal={true}>
+                    <Text style={styles.scrollCard}>1</Text>
+                    <Text style={styles.scrollCard}>2</Text>
+                    <Text style={styles.scrollCard}>3</Text>
+                    <Text style={styles.scrollCard}>4</Text>
+                    <Text style={styles.scrollCard}>5</Text>
+                    <Text style={styles.scrollCard}>6</Text>
+                </ScrollView>
+                <Text>Suggestions</Text>
+                <ScrollView horizontal={true}>
+                    <Text style={styles.scrollCard}>1</Text>
+                    <Text style={styles.scrollCard}>2</Text>
+                    <Text style={styles.scrollCard}>3</Text>
+                    <Text style={styles.scrollCard}>4</Text>
+                    <Text style={styles.scrollCard}>5</Text>
+                    <Text style={styles.scrollCard}>6</Text>
+                </ScrollView>
+                <Text>Recipes</Text>
+                <ScrollView horizontal={true}>
+                    <Text style={styles.scrollCard}>1</Text>
+                    <Text style={styles.scrollCard}>2</Text>
+                    <Text style={styles.scrollCard}>3</Text>
+                    <Text style={styles.scrollCard}>4</Text>
+                    <Text style={styles.scrollCard}>5</Text>
+                    <Text style={styles.scrollCard}>6</Text>
+                </ScrollView>
             </ScrollView>
         </View>
     );
 };
+
+const styles = StyleSheet.create({
+    scrollCard: {
+        fontSize: 500,
+    },
+});
