@@ -12,9 +12,9 @@ export const FoodCards = ({ displayPlants }) => {
                     <View key={plant.name}>
                         <Image
                             style={{ width: 200, height: 200 }}
-                            source={
-                                "https://media.istockphoto.com/photos/orange-picture-id185284489?k=20&m=185284489&s=612x612&w=0&h=LLY2os0YTG2uAzpBKpQZOAC4DGiXBt1jJrltErTJTKI="
-                            }
+                            source={{
+                                uri: plant.uri,
+                            }}
                         />
                         <Text style={{ textAlign: "center" }}>
                             {plant.name}
