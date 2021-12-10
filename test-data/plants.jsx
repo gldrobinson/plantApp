@@ -1,4 +1,4 @@
-export const grains = [
+export const plants = [
     {
         name: "amaranth",
         category: "grain",
