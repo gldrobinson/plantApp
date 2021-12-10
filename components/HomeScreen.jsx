@@ -2,9 +2,10 @@ import React, { useContext, useState } from "react";
 import { Text, View, StyleSheet, TextInput } from "react-native";
 import { userContext } from "../contexts/userContext";
 import grains from "../test-data/plants";
-import { Picker } from "@react-native-picker/picker";
 import { WeeklyCount } from "./WeeklyCount";
 import { PlantsToGo } from "./PlantsToGo";
+import AutocompleteInput from "react-native-autocomplete-input";
+import { AutoInput } from "./AutoComplete";
 
 export const HomeScreen = () => {
     const { user } = useContext(userContext);
@@ -17,7 +18,7 @@ export const HomeScreen = () => {
             <PlantsToGo weekCount={weekCount} />
             <Text>Current streak 2 weeks!</Text>
             <Text>Add new plant:</Text>
-            <TextInput
+            {/* <TextInput
                 onChange={(e) => {
                     const input = e.nativeEvent.text;
                     setPlantToAdd(input);
@@ -29,7 +30,8 @@ export const HomeScreen = () => {
                     borderColor: "gray",
                     borderWidth: 1,
                 }}
-            ></TextInput>
+            ></TextInput> */}
+            <AutoInput weekCount={weekCount} setWeekCount={setWeekCount} />
         </View>
     );
 };
