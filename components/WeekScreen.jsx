@@ -34,7 +34,7 @@ export const WeekScreen = () => {
 
                 <Text>Suggestions</Text>
                 <FoodCards displayPlants={filteredPlants} />
-                <Text>Recipes</Text>
+                {/* <Text>Recipes</Text>
                 <ScrollView horizontal={true}>
                     <Text style={styles.scrollCard}>1</Text>
                     <Text style={styles.scrollCard}>2</Text>
@@ -42,7 +42,7 @@ export const WeekScreen = () => {
                     <Text style={styles.scrollCard}>4</Text>
                     <Text style={styles.scrollCard}>5</Text>
                     <Text style={styles.scrollCard}>6</Text>
-                </ScrollView>
+                </ScrollView> */}
             </ScrollView>
         </View>
     );
