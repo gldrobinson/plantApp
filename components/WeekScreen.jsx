@@ -7,6 +7,7 @@ import {
     Image,
     StyleSheet,
 } from "react-native";
+import { FoodCards } from "./FoodCards";
 // import banana from "../test-images";
 // import apple from "../test-images";
 // import orange from "../test-images";
@@ -20,14 +21,10 @@ export const WeekScreen = () => {
             <ScrollView>
                 <Text>Your week so far</Text>
 
-                <ScrollView horizontal={true}>
-                    <Text style={styles.scrollCard}>1</Text>
-                    <Text style={styles.scrollCard}>2</Text>
-                    <Text style={styles.scrollCard}>3</Text>
-                    <Text style={styles.scrollCard}>4</Text>
-                    <Text style={styles.scrollCard}>5</Text>
-                    <Text style={styles.scrollCard}>6</Text>
-                </ScrollView>
+                {/* <ScrollView horizontal={true}> */}
+                <FoodCards />
+
+                {/* </ScrollView> */}
                 <Text>Suggestions</Text>
                 <ScrollView horizontal={true}>
                     <Text style={styles.scrollCard}>1</Text>

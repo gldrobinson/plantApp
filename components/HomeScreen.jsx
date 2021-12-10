@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react";
 import { Text, View, StyleSheet, TextInput } from "react-native";
 import { userContext } from "../contexts/userContext";
-import grains from "../test-data/plants";
+import { grains } from "../test-data/plants";
 import { WeeklyCount } from "./WeeklyCount";
 import { PlantsToGo } from "./PlantsToGo";
 import AutocompleteInput from "react-native-autocomplete-input";
@@ -9,7 +9,6 @@ import { AutoInput } from "./AutoComplete";
 
 export const HomeScreen = () => {
     const { user } = useContext(userContext);
-    const [plantToAdd, setPlantToAdd] = useState("");
     const [weekCount, setWeekCount] = useState(0);
     return (
         <View style={styles.container}>
