@@ -1,14 +1,14 @@
 import React, { useState } from "react";
 import { Button, StyleSheet, Text, TouchableOpacity, View } from "react-native";
-import { grains } from "../test-data/plants";
+import { plants } from "../test-data/plants";
 import AutocompleteInput from "react-native-autocomplete-input";
 
 export const AutoInput = ({ weekCount, setWeekCount }) => {
     const [queryText, setQueryText] = useState("");
     const [selectedValue, setSelectedValue] = useState("");
 
-    const plantArray = grains.map((grain) => {
-        return grain.name;
+    const plantArray = plants.map((plant) => {
+        return plant.name;
     });
     let data = [];
     if (selectedValue === "") {
