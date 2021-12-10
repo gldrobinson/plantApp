@@ -8,6 +8,8 @@ import {
     StyleSheet,
 } from "react-native";
 import { FoodCards } from "./FoodCards";
+import { plants } from "../test-data/plants";
+import { thisWeeksPlants } from "../test-data/thisWeeksPlants";
 // import banana from "../test-images";
 // import apple from "../test-images";
 // import orange from "../test-images";
@@ -16,24 +18,19 @@ import { FoodCards } from "./FoodCards";
 // import{orange}from
 
 export const WeekScreen = () => {
+    const filteredPlants = plants.filter((plant) => {
+        return !thisWeeksPlants.includes(plant);
+    });
+    console.log(filteredPlants, "filtetred");
     return (
         <View>
             <ScrollView>
                 <Text>Your week so far</Text>
 
-                {/* <ScrollView horizontal={true}> */}
-                <FoodCards />
+                <FoodCards displayPlants={thisWeeksPlants} />
 
-                {/* </ScrollView> */}
                 <Text>Suggestions</Text>
-                <ScrollView horizontal={true}>
-                    <Text style={styles.scrollCard}>1</Text>
-                    <Text style={styles.scrollCard}>2</Text>
-                    <Text style={styles.scrollCard}>3</Text>
-                    <Text style={styles.scrollCard}>4</Text>
-                    <Text style={styles.scrollCard}>5</Text>
-                    <Text style={styles.scrollCard}>6</Text>
-                </ScrollView>
+                <FoodCards displayPlants={filteredPlants} />
                 <Text>Recipes</Text>
                 <ScrollView horizontal={true}>
                     <Text style={styles.scrollCard}>1</Text>

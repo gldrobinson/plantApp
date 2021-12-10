@@ -2,13 +2,14 @@ import React, { useEffect } from "react";
 import { Text, StyleSheet, View, Image, ScrollView } from "react-native";
 import { grains } from "../test-data/plants";
 
-export const FoodCards = () => {
+export const FoodCards = ({ displayPlants }) => {
+    console.log(displayPlants);
     return (
         <ScrollView horizontal={true}>
-            {grains.map((grain) => {
-                console.log(grain.uri);
+            {displayPlants.map((plant) => {
+                console.log(plant.uri);
                 return (
-                    <View key={grain.name}>
+                    <View key={plant.name}>
                         <Image
                             style={{ width: 200, height: 200 }}
                             source={
@@ -16,10 +17,10 @@ export const FoodCards = () => {
                             }
                         />
                         <Text style={{ textAlign: "center" }}>
-                            {grain.name}
+                            {plant.name}
                         </Text>
                         <Text style={{ textAlign: "center" }}>
-                            {grain.category}
+                            {plant.category}
                         </Text>
                     </View>
                 );
