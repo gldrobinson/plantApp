@@ -18,10 +18,13 @@ import { thisWeeksPlants } from "../test-data/thisWeeksPlants";
 // import{orange}from
 
 export const WeekScreen = () => {
+    let namesToExclude = [];
+    for (let i = 0; i < thisWeeksPlants.length; i++) {
+        namesToExclude.push(thisWeeksPlants[i].name);
+    }
     const filteredPlants = plants.filter((plant) => {
-        return !thisWeeksPlants.includes(plant);
+        return !namesToExclude.includes(plant.name);
     });
-    console.log(filteredPlants, "filtetred");
     return (
         <View>
             <ScrollView>
