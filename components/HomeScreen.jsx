@@ -1,10 +1,9 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Text, View, StyleSheet, TextInput } from "react-native";
 import { userContext } from "../contexts/userContext";
-import { grains } from "../test-data/plants";
 import { PlantsToGo } from "./PlantsToGo";
-import AutocompleteInput from "react-native-autocomplete-input";
 import { AutoInput } from "./AutoComplete";
+import { getUser } from "../Api/getApi";
 
 export const HomeScreen = ({
   weekCount,
@@ -13,6 +12,17 @@ export const HomeScreen = ({
   setCurrentStreak,
 }) => {
   const { user } = useContext(userContext);
+  const [userInfo, setUserInfo] = useState({})
+
+  useEffect(() => {
+    getUser(user).then((userData) => {
+      setUserInfo(userData)
+    }).catch((err) => {
+      console.log(err)
+    })
+  }, [user])
+
+  console.log(userInfo)
 
   return (
     <View style={styles.container}>
