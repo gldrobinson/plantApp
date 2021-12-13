@@ -18,3 +18,13 @@ export const addUser = () => {
             console.log(res);
         });
 };
+
+export const getPlants = () => {
+    return plantAppApi
+        .get("/plants")
+        .then((res) => {
+            return res.data.plants;
+        }).catch(err => {
+            console.log(err)
+        });
+};

@@ -1,32 +1,44 @@
-import React, { useState } from "react";
-import { Button, StyleSheet, Text, TouchableOpacity, View } from "react-native";
-import { plants } from "../test-data/plants";
+import React, { useEffect, useState } from "react";
+import { Button, StyleSheet, Text, TouchableOpacity, View, useWindowDimensions } from "react-native";
 import AutocompleteInput from "react-native-autocomplete-input";
+import { getPlants } from "../Api/getApi";
 
 export const AutoInput = ({ weekCount, setWeekCount }) => {
-    const [queryText, setQueryText] = useState("");
     const [selectedValue, setSelectedValue] = useState("");
+    const [allPlants, setAllPlants] = useState([]);
 
-    const plantArray = plants.map((plant) => {
-        return plant.name;
-    });
+    useEffect(() => {
+        getPlants().then((plantsArr) => {
+            const plantNames = []
+            plantsArr.forEach((plant) => {
+                plantNames.push(plant.name)
+            })
+            setAllPlants(plantNames)
+        }).catch((err) => {
+            console.log(err)
+        })
+    }, [])
+
     let data = [];
-    if (selectedValue === "") {
+    if (selectedValue === "" || allPlants.includes(selectedValue)) {
         data = [];
     } else {
-        data = plantArray.filter((str) => {
+        data = allPlants.filter((str) => {
             return str.includes(selectedValue);
         });
     }
 
-    console.log(queryText, "query", selectedValue, "selected");
     return (
-        <View>
+        <View style={styles.container} >
+        <View style={styles.autocompleteContainer}>
             <AutocompleteInput
-                width={100}
-                data={data}
+
+                data={ data}
                 value={selectedValue}
-                onChangeText={(text) => setSelectedValue(text.toLowerCase())}
+                onChangeText={(text) => {
+                     setSelectedValue(text.toLowerCase())
+                    
+                }}
                 flatListProps={{
                     keyExtractor: (_, idx) => idx,
                     renderItem: ({ item }) => (
@@ -35,24 +47,49 @@ export const AutoInput = ({ weekCount, setWeekCount }) => {
                                 setSelectedValue(item);
                             }}
                         >
-                            <Text>{item}</Text>
+                            <Text style={styles.itemText}>{item}</Text>
                         </TouchableOpacity>
                     ),
                 }}
             />
+            <View style={styles.seperator} />
             <Button
                 style={styles.button}
+                color="#01937C"
                 title="submit"
                 onPress={(weekCount) => {
                     setWeekCount(weekCount + 1);
                 }}
             ></Button>
+            </View>
+            
         </View>
     );
 };
 const styles = StyleSheet.create({
-    button: {
-        margin: 20,
-        padding: 30,
+   container : {
+       position: "relative",
+       flex: 1,
+       paddingTop : 10,
+       justifyContent: "space-between",
+   },
+    autocompleteContainer : {
+        flex : 1,
+        backgroundColor : "white",
+        width: 250,
+        
+        
     },
+    button: {
+        flex : 1 ,
+        margin: 20,
+        padding: 50,
+    },
+    itemText : {
+        padding: 5,
+        textTransform: "lowercase",
+    },
+    seperator : {
+        padding: 5
+    }
 });
