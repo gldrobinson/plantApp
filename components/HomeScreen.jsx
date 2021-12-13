@@ -30,8 +30,8 @@ export const HomeScreen = () => {
                     borderWidth: 1,
                 }}
             ></TextInput> */}
-            <AutoInput weekCount={weekCount} setWeekCount={setWeekCount} />
-        </View>
+            <AutoInput  weekCount={weekCount} setWeekCount={setWeekCount} />
+            </View>
     );
 };
 const styles = StyleSheet.create({

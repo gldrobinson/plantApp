@@ -1,20 +1,36 @@
 import axios from "axios";
 
 const plantAppApi = axios.create({
-    baseURL: "https://plant-app-b-end.herokuapp.com/api",
+	baseURL: "https://plant-app-b-end.herokuapp.com/api",
 });
 
 export const addUser = () => {
+	return plantAppApi
+		.post("/users", {
+			username,
+			name,
+			badges,
+			currentWeek,
+			streak,
+			userplants,
+		})
+		.then((res) => {
+			console.log(res);
+		});
+};
+
+export const getAllBadges = async () => {
+	return plantAppApi.get("/badges").then((res) => {
+		return res.data.badges;
+	});
+};
+
+export const getPlants = () => {
     return plantAppApi
-        .post("/users", {
-            username,
-            name,
-            badges,
-            currentWeek,
-            streak,
-            userplants,
-        })
+        .get("/plants")
         .then((res) => {
-            console.log(res);
+            return res.data.plants;
+        }).catch(err => {
+            console.log(err)
         });
 };
