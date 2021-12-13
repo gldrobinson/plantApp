@@ -19,18 +19,29 @@ const Tab = createBottomTabNavigator();
 export default function App() {
   const [user, updateUser] = useState("bob");
   const [weekCount, setWeekCount] = useState(0);
+  const [currentStreak, setCurrentStreak] = useState(0);
 
   return (
     <userContext.Provider value={{ user, updateUser }}>
       <NavigationContainer>
         <Header style={{ justifyContent: "center" }} />
         <Logout />
-        <SignInOverlay weekCount={weekCount} setWeekCount={setWeekCount} />
+        <SignInOverlay
+          weekCount={weekCount}
+          setWeekCount={setWeekCount}
+          currentStreak={currentStreak}
+          setCurrentStreak={setCurrentStreak}
+        />
         <Tab.Navigator>
           <Tab.Screen
             name="Home"
             children={() => (
-              <HomeScreen weekCount={weekCount} setWeekCount={setWeekCount} />
+              <HomeScreen
+                weekCount={weekCount}
+                setWeekCount={setWeekCount}
+                currentStreak={currentStreak}
+                setCurrentStreak={setCurrentStreak}
+              />
             )}
           />
           <Tab.Screen name="Your week" component={WeekScreen} />
