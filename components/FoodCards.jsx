@@ -3,7 +3,6 @@ import { Text, StyleSheet, View, Image, ScrollView } from "react-native";
 import { grains } from "../test-data/plants";
 
 export const FoodCards = ({ displayPlants }) => {
-  console.log(displayPlants);
   return (
     <ScrollView horizontal={true}>
       {displayPlants.map((plant) => {
