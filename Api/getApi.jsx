@@ -21,3 +21,20 @@ export const getWeeklyPlants = () => {
     return res.data.topics;
   });
 };
+
+export const getAllBadges = async () => {
+  return plantAppApi.get("/badges").then((res) => {
+    return res.data.badges;
+  });
+};
+
+export const getPlants = () => {
+  return plantAppApi
+    .get("/plants")
+    .then((res) => {
+      return res.data.plants;
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};

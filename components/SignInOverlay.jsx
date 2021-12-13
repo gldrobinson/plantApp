@@ -4,17 +4,19 @@ import { Overlay } from "react-native-elements";
 import { useForm } from "react-hook-form";
 import { userContext } from "../contexts/userContext";
 import { getUser } from "../Api/getApi";
+import { addUser } from "../Api/postApi";
 // import { updateUser } from "../contexts/userContext";
 
 export const SignInOverlay = ({
   weekCount,
   setWeekCount,
-  currentStreak,
   setCurrentStreak,
 }) => {
   const [visible, setVisible] = useState(true);
   const [userLogin, setUserLogin] = useState("");
   const { user, updateUser } = useContext(userContext);
+  const [newUsername, setNewUsername] = useState("");
+  const [newName, setNewName] = useState("");
 
   const toggleOverlay = () => {
     if (user === null) {
@@ -28,26 +30,71 @@ export const SignInOverlay = ({
     toggleOverlay();
   }, [user]);
 
-  const handlePress = () => {
+  const handleSignIn = () => {
     getUser(userLogin).then((user) => {
       updateUser(user.username);
       setWeekCount(user.currentWeek.length);
       setCurrentStreak(user.streak.currentStreak);
     });
   };
-  console.log(weekCount);
+
+  const handleSignUp = () => {
+    addUser({
+      username: newUsername,
+      name: newName,
+    }).then((data) => {
+      updateUser(data.username);
+    });
+  };
+
+  // return (
+  //   <View>
+  //     <Overlay isVisible={visible}>
+  //       <Text>Please input your username:</Text>
+  //       <TextInput
+  //         onChange={(e) => {
+  //           const input = e.nativeEvent.text;
+  //           setUserLogin(input);
+  //         }}
+  //         style={{ height: 30, borderColor: "gray", borderWidth: 1 }}
+  //       ></TextInput>
+  //       <Button title="Submit" onPress={handleSignIn}></Button>
+  //     </Overlay>
+  //   </View>
+  // );
+
   return (
     <View>
       <Overlay isVisible={visible}>
-        <Text>Please input your username:</Text>
+        <Text>Sign in:</Text>
         <TextInput
+          placeholder="Username"
           onChange={(e) => {
             const input = e.nativeEvent.text;
             setUserLogin(input);
           }}
           style={{ height: 30, borderColor: "gray", borderWidth: 1 }}
         ></TextInput>
-        <Button title="Submit" onPress={handlePress}></Button>
+        <Button title="Submit" onPress={handleSignIn}></Button>
+
+        <Text>Sign up:</Text>
+        <TextInput
+          placeholder="Username"
+          onChange={(e) => {
+            const input = e.nativeEvent.text;
+            setNewUsername(input);
+          }}
+          style={{ height: 30, borderColor: "gray", borderWidth: 1 }}
+        ></TextInput>
+        <TextInput
+          placeholder="First name"
+          onChange={(e) => {
+            const input = e.nativeEvent.text;
+            setNewName(input);
+          }}
+          style={{ height: 30, borderColor: "gray", borderWidth: 1 }}
+        ></TextInput>
+        <Button title="Submit" onPress={handleSignUp}></Button>
       </Overlay>
     </View>
   );
