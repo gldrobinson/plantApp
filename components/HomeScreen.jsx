@@ -2,7 +2,6 @@ import React, { useContext, useEffect, useState } from "react";
 import { Text, View, StyleSheet, TextInput } from "react-native";
 import { userContext } from "../contexts/userContext";
 import { grains } from "../test-data/plants";
-import { WeeklyCount } from "./WeeklyCount";
 import { PlantsToGo } from "./PlantsToGo";
 import AutocompleteInput from "react-native-autocomplete-input";
 import { AutoInput } from "./AutoComplete";
