@@ -1,5 +1,6 @@
 import React from "react";
+import { Text } from "react-native-elements";
 
 export const Header = () => {
-    return <h1> plantapp</h1>;
+    return <Text>plantapp</Text>;
 };
