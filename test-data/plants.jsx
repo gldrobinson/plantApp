@@ -1,0 +1,47 @@
+export const plants = [
+    {
+        name: "amaranth",
+        category: "grain",
+        uri: "https://media.istockphoto.com/photos/orange-picture-id185284489?k=20&m=185284489&s=612x612&w=0&h=LLY2os0YTG2uAzpBKpQZOAC4DGiXBt1jJrltErTJTKI=",
+    },
+    {
+        name: "barley",
+        category: "grain",
+        uri: "https://media.istockphoto.com/photos/orange-picture-id185284489?k=20&m=185284489&s=612x612&w=0&h=LLY2os0YTG2uAzpBKpQZOAC4DGiXBt1jJrltErTJTKI=",
+    },
+    {
+        name: "buckwheat",
+        category: "grain",
+        uri: "https://media.istockphoto.com/photos/orange-picture-id185284489?k=20&m=185284489&s=612x612&w=0&h=LLY2os0YTG2uAzpBKpQZOAC4DGiXBt1jJrltErTJTKI=",
+    },
+    {
+        name: "popcorn",
+        category: "grain",
+        uri: "https://media.istockphoto.com/photos/orange-picture-id185284489?k=20&m=185284489&s=612x612&w=0&h=LLY2os0YTG2uAzpBKpQZOAC4DGiXBt1jJrltErTJTKI=",
+    },
+    {
+        name: "hominy corn",
+        category: "grain",
+        uri: "https://media.istockphoto.com/photos/orange-picture-id185284489?k=20&m=185284489&s=612x612&w=0&h=LLY2os0YTG2uAzpBKpQZOAC4DGiXBt1jJrltErTJTKI=",
+    },
+    {
+        name: "millet",
+        category: "grain",
+        uri: "https://media.istockphoto.com/photos/orange-picture-id185284489?k=20&m=185284489&s=612x612&w=0&h=LLY2os0YTG2uAzpBKpQZOAC4DGiXBt1jJrltErTJTKI=",
+    },
+    // { name: "oats", category: "grain" },
+    // { name: "quinoa", category: "grain" },
+    // { name: "rice", category: "grain" },
+    // { name: "rye", category: "grain" },
+    // { name: "sorghum", category: "grain" },
+    // { name: "spelt", category: "grain" },
+    // { name: "teff", category: "grain" },
+    // { name: "tritcale", category: "grain" },
+    // { name: "wheat", category: "grain" },
+    // { name: "bulgur wheat", category: "grain" },
+    // { name: "semolina", category: "grain" },
+    // { name: "pasta", category: "grain" },
+    // { name: "couscous", category: "grain" },
+    // { name: "wild rice", category: "grain" },
+    // { name: "granola", category: "grain" },
+];
