@@ -1,36 +1,61 @@
-import React from "react";
-import {
-    Button,
-    ScrollView,
-    Text,
-    View,
-    Image,
-    StyleSheet,
-} from "react-native";
+import React, { useEffect, useState, useContext } from "react";
+import { ScrollView, Text, View, StyleSheet } from "react-native";
 import { FoodCards } from "./FoodCards";
-import { plants } from "../test-data/plants";
-import { thisWeeksPlants } from "../test-data/thisWeeksPlants";
-// import banana from "../test-images";
-// import apple from "../test-images";
-// import orange from "../test-images";
-
-// import{apple}from
-// import{orange}from
+import { getCurrentWeeksPlants, getPlants } from "../Api/getApi";
+import { userContext } from "../contexts/userContext";
 
 export const WeekScreen = () => {
+    const { user } = useContext(userContext);
+    const [currentWeeksPlants, setCurrentWeeksPlants] = useState([]);
+    const [allPlants, setAllPlants] = useState([]);
+
+    useEffect(() => {
+        console.log(user);
+        getCurrentWeeksPlants(user)
+            .then((plants) => {
+                setCurrentWeeksPlants(plants);
+            })
+            .then((err) => {
+                console.log(err);
+            });
+    }, [user]);
+
+    useEffect(() => {
+        getPlants()
+            .then((plantsArr) => {
+                const plantNames = [];
+                plantsArr.forEach((plant) => {
+                    plantNames.push(plant);
+                });
+                setAllPlants(plantNames);
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+    }, []);
+
     let namesToExclude = [];
-    for (let i = 0; i < thisWeeksPlants.length; i++) {
-        namesToExclude.push(thisWeeksPlants[i].name);
+    for (let i = 0; i < currentWeeksPlants.length; i++) {
+        namesToExclude.push(currentWeeksPlants[i].name);
     }
-    const filteredPlants = plants.filter((plant) => {
+    const filteredPlants = allPlants.filter((plant) => {
         return !namesToExclude.includes(plant.name);
     });
+
+    let namesToInclude = [];
+    for (let i = 0; i < currentWeeksPlants.length; i++) {
+        namesToInclude.push(currentWeeksPlants[i].name);
+    }
+    const weekToDisplay = allPlants.filter((plant) => {
+        return namesToInclude.includes(plant.name);
+    });
+
     return (
         <View>
             <ScrollView>
                 <Text>Your week so far</Text>
 
-                <FoodCards displayPlants={thisWeeksPlants} />
+                <FoodCards displayPlants={weekToDisplay} />
 
                 <Text>Suggestions</Text>
                 <FoodCards displayPlants={filteredPlants} />
