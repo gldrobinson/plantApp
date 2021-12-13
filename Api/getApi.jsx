@@ -21,6 +21,6 @@ export const addUser = () => {
 
 export const getAllBadges = async () => {
 	return plantAppApi.get("/badges").then((res) => {
-		return res.data;
+		return res.data.badges;
 	});
 };
