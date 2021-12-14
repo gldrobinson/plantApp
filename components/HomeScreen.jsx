@@ -4,6 +4,7 @@ import { userContext } from "../contexts/userContext";
 import { PlantsToGo } from "./PlantsToGo";
 import { AutoInput } from "./AutoComplete";
 import { getUser } from "../Api/getApi";
+import { updateStreak } from "../Api/patchApi";
 
 export const HomeScreen = () => {
   const { user } = useContext(userContext);
@@ -21,6 +22,19 @@ export const HomeScreen = () => {
       console.log("error with get request on Home")
     })
   }, [user])
+
+  useEffect(() => {
+    if (weekCount === 30) {
+      console.log("in week count use effect")
+      setCurrentStreak(currentStreak + 1);
+      updateStreak(user, true).then((res) => {
+        console.log("made it!")
+      }).catch((err) => {
+        setCurrentStreak(currentStreak - 1);
+        console.dir(err)
+      })
+    }
+  }, [weekCount])
 
   console.log(weekCount)
 
