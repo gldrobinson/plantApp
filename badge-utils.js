@@ -1,4 +1,5 @@
 const badgeFunc = (userData) => {
+	let message;
 	if (
 		userData.streak.highestStreak === 1 &&
 		!userData.badges.includes({
@@ -14,6 +15,7 @@ const badgeFunc = (userData) => {
 			grey_url: "https://i.postimg.cc/RVRy0rn5/grey-aubergine-badge.png",
 			description: "you have eaten 30 different plants in a week",
 		});
+		message = "You have earned the 1 week badge";
 	} else if (
 		userData.streak.highestStreak === 2 &&
 		!userData.badges.includes({
@@ -29,6 +31,7 @@ const badgeFunc = (userData) => {
 			grey_url: "https://i.postimg.cc/YSJyPMTg/grey-banana-badge.png",
 			description: "you have eaten 30 different plants for two straight weeks",
 		});
+		message = "You have earned the 2 weeks badge";
 	} else if (
 		userData.streak.highestStreak === 4 &&
 		!userData.badges.includes({
@@ -44,6 +47,7 @@ const badgeFunc = (userData) => {
 			grey_url: "https://i.postimg.cc/ZK4YgSh1/grey-lettuce-badge.png",
 			description: "you have eaten 30 different plants every week for a month",
 		});
+		message = "You have earned the 1 month badge";
 	}
 	if (userData.userPlants.length === 30) {
 		userData.badges.push({
@@ -52,6 +56,7 @@ const badgeFunc = (userData) => {
 			grey_url: "https://i.postimg.cc/DwNCW7vD/grey-broccoli-badge.png",
 			description: "you have eaten 30 different types of plant",
 		});
+		message = "You have earned the 30 different plants badge";
 	}
 	if (userData.userPlants.length === 60) {
 		userData.badges.push({
@@ -60,6 +65,7 @@ const badgeFunc = (userData) => {
 			grey_url: "https://i.postimg.cc/B69MgN1B/grey-carrot-badge.png",
 			description: "you have eaten 60 different types of plant",
 		});
+		message = "You have earned the 60 different plants badge";
 	}
 	const seeds = userData.userPlants.filter((plant) => {
 		if (plant.category === "seeds") return plant;
@@ -86,6 +92,8 @@ const badgeFunc = (userData) => {
 			grey_url: "https://i.postimg.cc/3RqrV4Y1/grey-corn-badge.png",
 			description: "you have eaten five different types of seeds",
 		});
+
+		message = "You have earned the 5 different seeds badge";
 	}
 	if (vegetables.length === 5) {
 		userData.badges.push({
@@ -94,6 +102,8 @@ const badgeFunc = (userData) => {
 			grey_url: "https://i.postimg.cc/JngzHPc2/grey-mushroom-badge.png",
 			description: "you have eaten five different types of vegetable",
 		});
+
+		message = "You have earned the 5 different vegetables badge";
 	}
 	if (vegetables.length === 10) {
 		userData.badges.push({
@@ -102,6 +112,8 @@ const badgeFunc = (userData) => {
 			grey_url: "https://i.postimg.cc/Ls61MPFF/grey-garlic-badge.png",
 			description: "you have eaten 10 different types of vegetable",
 		});
+
+		message = "You have earned the 10 different vegetables badge";
 	}
 	if (nuts.length === 5) {
 		userData.badges.push({
@@ -110,6 +122,8 @@ const badgeFunc = (userData) => {
 			grey_url: "https://i.postimg.cc/43SmkF1p/grey-grape-badge.png",
 			description: "you have eaten 5 different types of nut",
 		});
+
+		message = "You have earned the 5 different nuts badge";
 	}
 	if (grains.length === 5) {
 		userData.badges.push({
@@ -118,6 +132,8 @@ const badgeFunc = (userData) => {
 			grey_url: "https://i.postimg.cc/fy4yktpL/grey-ice-gem-badge.png",
 			description: "you have eaten five different types of grains",
 		});
+
+		message = "You have earned the 5 different grains badge";
 	}
 	if (fruits.length === 5) {
 		userData.badges.push({
@@ -126,6 +142,8 @@ const badgeFunc = (userData) => {
 			grey_url: "https://i.postimg.cc/bwCcvdR6/grey-lettuce-badge.png",
 			description: "you have eaten five different types of fruit",
 		});
+
+		message = "You have earned the 5 different fruits badge";
 	}
 	if (fruits.length === 10) {
 		userData.badges.push({
@@ -134,6 +152,8 @@ const badgeFunc = (userData) => {
 			grey_url: "https://i.postimg.cc/XNFXmLBy/grey-kiwi-badge.png",
 			description: "you have eaten ten different types of fruit",
 		});
+
+		message = "You have earned the 10 different fruits badge";
 	}
 	if (herbsAndSpices.length === 5) {
 		userData.badges.push({
@@ -142,8 +162,10 @@ const badgeFunc = (userData) => {
 			grey_url: "https://i.postimg.cc/rwhpxY37/grey-lemon-badge.png",
 			description: "you have eaten five different herbs and spices",
 		});
+
+		message = "You have earned the 5 different herbs and spices badge";
 	}
-	return userData;
+	return message;
 };
 
 module.exports = badgeFunc;
