@@ -5,14 +5,11 @@ const plantAppApi = axios.create({
 });
 
 export const updateCurrentWeek = (username, plant) => {
-    // not working... 
-    console.log("plant", plant[0].name, plant[0].category)
-    return plantAppApi.patch(`/users/${username}/plants`, {
-        name : "tangerine",
-        cateogory : "fruits"
+    return plantAppApi.patch(`/users/holly34/plants`, {
+        name :plant[0].name,
+        cateogory :  plant[0].category,
+        img_url : plant[0].img_url
     }).then((res) => {
-        console.log(res)
-    }).catch((err) => {
-        console.log(err)
+        return res.data;
     })
 }
