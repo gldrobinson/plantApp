@@ -49,22 +49,26 @@ export const AutoInput = ({ weekCount, setWeekCount }) => {
     } else {
       setPlaceholderText("")
       let selectedPlant = plantData.filter((plant) => plant.name === selectedValue);
-      setWeekCount((currentCount) => {
-        console.log(currentCount, " in handleSubmit")
-        return currentCount + 1;
-      })
-      setSelectedValue("");
-      console.log(user, selectedPlant)
-      // update users week here... not currently working.
-      // updateCurrentWeek(user,selectedPlant).then((res) => {
-      //   console.log(res)
-      // if error, update placeholder text to "looks like you've already added that food for this week. Why not try something new!"
-      // })
 
+      if (selectedPlant.length === 0) {
+        setPlaceholderText("Sorry that food does not exist currently in our database! Why not try something else!");
+      } else {
+        setWeekCount((currentCount) => {
+          return currentCount + 1;
+        })
+        setSelectedValue("");
+        updateCurrentWeek(user,selectedPlant).then((userData) => {
+          console.log(userData)
+        }).catch((err) => {
+          if (err.response.data.message === "Plant already added to current week") {
+            setPlaceholderText("It looks like you've already added that food this week! Why not try something new!")
+          } else {
+            setPlaceholderText("Oops something went wrong! Please try again :)")
+          }
+        })
+      }
     }
   }
-
-  console.log("weekCount = ",weekCount)
 
   return (
     <View style={styles.container}>
