@@ -18,6 +18,7 @@ export const HomeScreen = () => {
       setCurrentStreak(userData.streak.currentStreak)
     }).catch((err) => {
       console.log(err)
+      console.log("error with get request on Home")
     })
   }, [user])
 
@@ -38,28 +39,31 @@ export const HomeScreen = () => {
 };
 const styles = StyleSheet.create({
   container: {
-    alignItems: "center",
     flex : 1,
-    backgroundColor : "#FAF1E6",
-    justifyContent: "center",
+    flexDirection : "column",
     alignItems: "center",
+    justifyContent: "center",
+    backgroundColor : "#FAF1E6",
   },
+  
   circleOverlay : {
     color: "#FFC074",
-    width: 100,
-    height: 100,
+    width : 180,
+    height: 180,
     backgroundColor: "#01937C",
-    // borderRadius: 180 / 2,
+    borderRadius: 180 / 2,
     justifyContent: "center",
+    alignItems : "center",
     borderWidth: 1,
-    padding: 30
     
   },
+  
   weeklyCount: {
     fontSize: 80,
-    textAlign: "center",
+    // textAlign: "center",
     fontWeight: "bold",
     alignItems: "center",
+    justifyContent: "centre",
   },
   
 });
