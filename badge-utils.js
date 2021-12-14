@@ -16,7 +16,7 @@ const badgeFunc = (userData) => {
 		});
 	} else if (
 		userData.streak.highestStreak === 2 &&
-		!fakeData.badges.includes({
+		!userData.badges.includes({
 			name: "2 weeks",
 			img_url: "https://i.postimg.cc/HsQ9tPsr/banana-badge.png",
 			grey_url: "https://i.postimg.cc/YSJyPMTg/grey-banana-badge.png",
@@ -80,7 +80,7 @@ const badgeFunc = (userData) => {
 		if (plant.category === "herbs-and-spices") return plant;
 	});
 	if (seeds.length === 5) {
-		fakeData.badges.push({
+		userData.badges.push({
 			name: "5 seeds",
 			img_url: "https://i.postimg.cc/Wp0ZRqRK/corn-badge.png",
 			grey_url: "https://i.postimg.cc/3RqrV4Y1/grey-corn-badge.png",
@@ -88,7 +88,7 @@ const badgeFunc = (userData) => {
 		});
 	}
 	if (vegetables.length === 5) {
-		fakeData.badges.push({
+		userData.badges.push({
 			name: "5 vegetables",
 			img_url: "https://i.postimg.cc/50mmxQBy/mushroom-badge.png",
 			grey_url: "https://i.postimg.cc/JngzHPc2/grey-mushroom-badge.png",
@@ -96,7 +96,7 @@ const badgeFunc = (userData) => {
 		});
 	}
 	if (vegetables.length === 10) {
-		fakeData.badges.push({
+		userData.badges.push({
 			name: "10 vegetables",
 			img_url: "https://i.postimg.cc/P55v86Ls/garlic-badge.png",
 			grey_url: "https://i.postimg.cc/Ls61MPFF/grey-garlic-badge.png",
@@ -104,7 +104,7 @@ const badgeFunc = (userData) => {
 		});
 	}
 	if (nuts.length === 5) {
-		fakeData.badges.push({
+		userData.badges.push({
 			name: "5 nuts",
 			img_url: "https://i.postimg.cc/pXGX3Pd4/grape-badge.png",
 			grey_url: "https://i.postimg.cc/43SmkF1p/grey-grape-badge.png",
@@ -112,7 +112,7 @@ const badgeFunc = (userData) => {
 		});
 	}
 	if (grains.length === 5) {
-		fakeData.badges.push({
+		userData.badges.push({
 			name: "5 grains",
 			img_url: "https://i.postimg.cc/267CGDJH/ice-gem-badge.png",
 			grey_url: "https://i.postimg.cc/fy4yktpL/grey-ice-gem-badge.png",
@@ -120,7 +120,7 @@ const badgeFunc = (userData) => {
 		});
 	}
 	if (fruits.length === 5) {
-		fakeData.badges.push({
+		userData.badges.push({
 			name: "5 fruits",
 			img_url: "https://i.postimg.cc/RFnzy9Kg/lettuce-badge.png",
 			grey_url: "https://i.postimg.cc/bwCcvdR6/grey-lettuce-badge.png",
@@ -128,7 +128,7 @@ const badgeFunc = (userData) => {
 		});
 	}
 	if (fruits.length === 10) {
-		fakeData.badges.push({
+		userData.badges.push({
 			name: "10 fruits",
 			img_url: "https://i.postimg.cc/XYBqbgp5/kiwi-badge.png",
 			grey_url: "https://i.postimg.cc/XNFXmLBy/grey-kiwi-badge.png",
@@ -136,14 +136,14 @@ const badgeFunc = (userData) => {
 		});
 	}
 	if (herbsAndSpices.length === 5) {
-		fakeData.badges.push({
+		userData.badges.push({
 			name: "5 herbs and spices",
 			img_url: "https://i.postimg.cc/QMs3yg5h/lemon-badge.png",
 			grey_url: "https://i.postimg.cc/rwhpxY37/grey-lemon-badge.png",
 			description: "you have eaten five different herbs and spices",
 		});
 	}
-	return fakeData;
+	return userData;
 };
 
 module.exports = badgeFunc;
