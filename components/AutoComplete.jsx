@@ -53,13 +53,14 @@ export const AutoInput = ({ weekCount, setWeekCount }) => {
       if (selectedPlant.length === 0) {
         setPlaceholderText("Sorry that food does not currently exist in our database... Why not try something else!");
       } else {
-        setWeekCount((currentCount) => {
-          return currentCount + 1;
-        })
         setSelectedValue("");
         updateCurrentWeek(user,selectedPlant).then((userData) => {
+          setWeekCount((currentCount) => {
+            return currentCount + 1;
+          })
           console.log(userData)
         }).catch((err) => {
+          console.dir(err)
           if (err.response.data.message === "Plant already added to current week") {
             setPlaceholderText("It looks like you've already added that food this week! Why not try something new!")
           } else {
@@ -132,6 +133,6 @@ const styles = StyleSheet.create({
   placeholderText : {
     fontStyle: "italic",
     fontWeight : "bold",
-    textAlign: "center"
+    textAlign: "center",
   }
 });
