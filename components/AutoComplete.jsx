@@ -51,7 +51,7 @@ export const AutoInput = ({ weekCount, setWeekCount }) => {
       let selectedPlant = plantData.filter((plant) => plant.name === selectedValue);
 
       if (selectedPlant.length === 0) {
-        setPlaceholderText("Sorry that food does not exist currently in our database! Why not try something else!");
+        setPlaceholderText("Sorry that food does not currently exist in our database... Why not try something else!");
       } else {
         setWeekCount((currentCount) => {
           return currentCount + 1;
@@ -99,7 +99,8 @@ export const AutoInput = ({ weekCount, setWeekCount }) => {
           title="submit"
           onPress={handleOnSubmit}
         ></Button>
-        <Text>{placeholderText}</Text>
+        <View style={styles.seperator} />
+        <Text style={styles.placeholderText}>{placeholderText}</Text>
       </View>
     </View>
   );
@@ -128,4 +129,9 @@ const styles = StyleSheet.create({
   seperator: {
     padding: 5,
   },
+  placeholderText : {
+    fontStyle: "italic",
+    fontWeight : "bold",
+    textAlign: "center"
+  }
 });
