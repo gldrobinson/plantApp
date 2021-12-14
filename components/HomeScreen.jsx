@@ -11,6 +11,10 @@ export const HomeScreen = ({
   setWeekCount,
   currentStreak,
   setCurrentStreak,
+  signUpDate,
+  setSignUpDate,
+  currentDate,
+  setCurrentDate,
 }) => {
   const { user } = useContext(userContext);
 
