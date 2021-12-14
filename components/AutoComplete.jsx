@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import {
   Button,
   StyleSheet,
@@ -9,14 +9,20 @@ import {
 } from "react-native";
 import AutocompleteInput from "react-native-autocomplete-input";
 import { getPlants } from "../Api/getApi";
+import { updateCurrentWeek } from "../Api/patchApi";
+import { userContext } from "../contexts/userContext";
 
 export const AutoInput = ({ weekCount, setWeekCount }) => {
+  const {user} = useContext(userContext)
   const [selectedValue, setSelectedValue] = useState("");
+  const [plantData, setPlantData] = useState([]);
   const [allPlants, setAllPlants] = useState([]);
+  const [placeholderText, setPlaceholderText] = useState("");
 
   useEffect(() => {
     getPlants()
       .then((plantsArr) => {
+        setPlantData(plantsArr)
         const plantNames = [];
         plantsArr.forEach((plant) => {
           plantNames.push(plant.name);
@@ -35,6 +41,33 @@ export const AutoInput = ({ weekCount, setWeekCount }) => {
     data = allPlants.filter((str) => {
       return str.includes(selectedValue);
     });
+  }
+
+  const handleOnSubmit = () => {
+    if (selectedValue === "") {
+      setPlaceholderText("Don't forget to add your food before clicking submit!")
+    } else {
+      setPlaceholderText("")
+      let selectedPlant = plantData.filter((plant) => plant.name === selectedValue);
+
+      if (selectedPlant.length === 0) {
+        setPlaceholderText("Sorry that food does not currently exist in our database... Why not try something else!");
+      } else {
+        setWeekCount((currentCount) => {
+          return currentCount + 1;
+        })
+        setSelectedValue("");
+        updateCurrentWeek(user,selectedPlant).then((userData) => {
+          console.log(userData)
+        }).catch((err) => {
+          if (err.response.data.message === "Plant already added to current week") {
+            setPlaceholderText("It looks like you've already added that food this week! Why not try something new!")
+          } else {
+            setPlaceholderText("Oops something went wrong! Please try again :)")
+          }
+        })
+      }
+    }
   }
 
   return (
@@ -64,10 +97,10 @@ export const AutoInput = ({ weekCount, setWeekCount }) => {
           style={styles.button}
           color="#01937C"
           title="submit"
-          onPress={(weekCount) => {
-            setWeekCount(weekCount + 1);
-          }}
+          onPress={handleOnSubmit}
         ></Button>
+        <View style={styles.seperator} />
+        <Text style={styles.placeholderText}>{placeholderText}</Text>
       </View>
     </View>
   );
@@ -81,7 +114,7 @@ const styles = StyleSheet.create({
   },
   autocompleteContainer: {
     flex: 1,
-    backgroundColor: "white",
+    backgroundColor: "'FAF1E6'",
     width: 250,
   },
   button: {
@@ -96,4 +129,9 @@ const styles = StyleSheet.create({
   seperator: {
     padding: 5,
   },
+  placeholderText : {
+    fontStyle: "italic",
+    fontWeight : "bold",
+    textAlign: "center"
+  }
 });

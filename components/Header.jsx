@@ -1,5 +1,5 @@
 import React from "react";
-import { Text, Image } from "react-native-elements";
+import { Image } from "react-native-elements";
 const logoUrl = "https://i.postimg.cc/rpB4dCn6/logo-rooting.png";
 export const Header = () => {
 	return (
@@ -7,7 +7,7 @@ export const Header = () => {
 			source={{
 				uri: logoUrl,
 			}}
-			style={{ width: 100, height: 100 }}
+			style={{ width: 300, height: 100, resizeMode: "contain" }}
 		/>
 	);
 };

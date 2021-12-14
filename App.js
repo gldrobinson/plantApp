@@ -22,9 +22,9 @@ export default function App() {
     const [currentStreak, setCurrentStreak] = useState(0);
 
     return (
-        <userContext.Provider value={{ user, updateUser }}>
-            <NavigationContainer>
-                <Header style={{ justifyContent: "center" }} />
+        <NavigationContainer>
+            <Header style={{ justifyContent: "center" }} />
+            <userContext.Provider value={{ user, updateUser }}>
                 <Logout />
                 <SignInOverlay
                     weekCount={weekCount}
@@ -48,23 +48,15 @@ export default function App() {
                     <Tab.Screen name="Badges" component={BadgesScreen} />
                     <Tab.Screen name="Info" component={InfoScreen} />
                 </Tab.Navigator>
-
-                {/* <Stack.Navigator>
-        { <View style={styles.container}> */}
-                {/* <Stack.Screen name="Home" component={NavBar} /> */}
-                {/* <Stack.Screen name="Account" component={ProfileScreen} /> */}
-                {/* <Stack.Screen name="Badges" component={BadgesScreen} /> */}
-                {/* </View> */}
-                {/* </Stack.Navigator> */}
-            </NavigationContainer>
-        </userContext.Provider>
+            </userContext.Provider>
+        </NavigationContainer>
     );
 }
 
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: "#FFC074",
+        backgroundColor: "#fff",
         alignItems: "center",
         justifyContent: "center",
     },
