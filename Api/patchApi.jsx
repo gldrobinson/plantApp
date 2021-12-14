@@ -12,4 +12,12 @@ export const updateCurrentWeek = (username, plant) => {
     }).then((res) => {
         return res.data;
     })
+};
+
+export const updateStreak = (username, streakBool) => {
+    return plantAppApi.patch(`/users/${username}/streak`, {
+        incStreak: true
+    }).then((res) => {
+        console.log(res)
+    })
 }
