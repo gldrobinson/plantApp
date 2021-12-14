@@ -44,22 +44,24 @@ export const AutoInput = ({ weekCount, setWeekCount }) => {
   }
 
   const handleOnSubmit = () => {
+    // if no value is inputted, return a message for the user.
     if (selectedValue === "") {
       setPlaceholderText("Don't forget to add your food before clicking submit!")
     } else {
       setPlaceholderText("")
       let selectedPlant = plantData.filter((plant) => plant.name === selectedValue);
-
+      // if plant selected is not in the db, return a message for the user.
       if (selectedPlant.length === 0) {
         setPlaceholderText("Sorry that food does not currently exist in our database... Why not try something else!");
       } else {
-        setWeekCount((currentCount) => {
-          return currentCount + 1;
-        })
         setSelectedValue("");
         updateCurrentWeek(user,selectedPlant).then((userData) => {
-          console.log(userData)
+          // increment weekly count
+          setWeekCount((currentCount) => {
+            return currentCount + 1;
+          })
         }).catch((err) => {
+          // if food selected already exists in week, return a message for the user.
           if (err.response.data.message === "Plant already added to current week") {
             setPlaceholderText("It looks like you've already added that food this week! Why not try something new!")
           } else {
@@ -132,6 +134,6 @@ const styles = StyleSheet.create({
   placeholderText : {
     fontStyle: "italic",
     fontWeight : "bold",
-    textAlign: "center"
+    textAlign: "center",
   }
 });
