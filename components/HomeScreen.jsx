@@ -22,7 +22,7 @@ export const HomeScreen = () => {
     })
   }, [user])
 
-  console.log(userInfo)
+  console.log(weekCount)
 
   return (
     <View style={styles.container}>
@@ -30,7 +30,7 @@ export const HomeScreen = () => {
       <View style={styles.circleOverlay}>
         <Text style={styles.weeklyCount}>{weekCount}</Text>
       </View>
-      <Text style={styles.plantsToGo}>Only {30 - weekCount} to go!</Text>
+      <Text style={styles.plantsToGo}> {30 - weekCount > 0 ? `Only ${30 - weekCount} to go!`: `Congratulations! You made your 30 for the week!`}</Text>
       <Text>Current streak {currentStreak} week(s)!</Text>
       <Text>Add new plant:</Text>
       <AutoInput weekCount={weekCount} setWeekCount={setWeekCount} />
