@@ -44,7 +44,6 @@ export const FoodCards = ({ displayPlants }) => {
     );
 };
 
-//capitalise
 const styles = StyleSheet.create({
     foodPic: {
         borderWidth: 4,
