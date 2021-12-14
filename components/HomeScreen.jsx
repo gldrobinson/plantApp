@@ -5,6 +5,7 @@ import { PlantsToGo } from "./PlantsToGo";
 import { AutoInput } from "./AutoComplete";
 import { getUser } from "../Api/getApi";
 import { updateStreak } from "../Api/patchApi";
+import badgeFunc from "../badge-utils";
 
 export const HomeScreen = () => {
   const { user } = useContext(userContext);
@@ -17,6 +18,7 @@ export const HomeScreen = () => {
     getUser(user).then((userData) => {
       setUserInfo(userData)
       setWeekCount(userData.currentWeek.length)
+      badgeFunc(userData);
       setCurrentStreak(userData.streak.currentStreak)
       setHighestStreak(userData.streak.highestStreak)
     }).catch((err) => {
@@ -33,7 +35,7 @@ export const HomeScreen = () => {
         console.log("made it!")
       }).catch((err) => {
         setCurrentStreak(currentStreak - 1);
-        console.dir(err)
+        console.dir(err);
       })
     }
   }, [weekCount])
@@ -59,11 +61,11 @@ export const HomeScreen = () => {
 };
 const styles = StyleSheet.create({
   container: {
-    flex : 1,
-    flexDirection : "column",
+    flex: 1,
+    flexDirection: "column",
     alignItems: "center",
     justifyContent: "center",
-    backgroundColor : "#FAF1E6",
+    backgroundColor: "#FAF1E6",
   },
   weekTitle : {
     fontFamily : "chalkduster",
@@ -73,7 +75,7 @@ const styles = StyleSheet.create({
   },
   circleOverlay : {
     color: "#FFC074",
-    width : 180,
+    width: 180,
     height: 180,
     backgroundColor: "#01937C",
     borderRadius: 180 / 2,

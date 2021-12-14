@@ -51,13 +51,13 @@ export const WeekScreen = () => {
     });
 
     return (
-        <View>
+        <View style={styles.container}>
             <ScrollView>
-                <Text>Your week so far</Text>
+                <Text style={styles.weekSubHeader}>Your week so far</Text>
 
                 <FoodCards displayPlants={weekToDisplay} />
 
-                <Text>Suggestions</Text>
+                <Text style={styles.weekSubHeader}>Suggestions</Text>
                 <FoodCards displayPlants={filteredPlants} />
                 {/* <Text>Recipes</Text>
                 <ScrollView horizontal={true}>
@@ -74,7 +74,19 @@ export const WeekScreen = () => {
 };
 
 const styles = StyleSheet.create({
-    scrollCard: {
-        fontSize: 500,
+    weekSubHeader: {
+        fontSize: 18,
+        fontFamily: "chalkduster",
+        fontWeight: "bold",
+        textAlign: "center",
+        alignItems: "center",
+        paddingBottom: "0.5rem",
+        paddingTop: "0.2rem",
+        color: "#01937C",
+    },
+    container: {
+        alignContent: "center",
+        backgroundColor: "#FFC074",
     },
 });
+// fadde edge of scroll
