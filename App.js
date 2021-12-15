@@ -89,7 +89,7 @@ export default function App() {
 					/>
 					<Tab.Screen
 						name="Badges"
-						component={BadgesScreen}
+						children={() => <BadgesScreen badgeMessage={badgeMessage} />}
 						options={{
 							tabBarIcon: (tabInfo) => (
 								<Icon name="star" size={30} color={tabInfo.tintColor} />
@@ -104,7 +104,6 @@ export default function App() {
 								<Icon name="info" size={30} color={tabInfo.tintColor} />
 							),
 						}}
-						badgeMessage={badgeMessage}
 					/>
 				</Tab.Navigator>
 
