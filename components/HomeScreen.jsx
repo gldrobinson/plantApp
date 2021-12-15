@@ -39,32 +39,39 @@ export const HomeScreen = () => {
         if (weekCount === 30) {
             console.log("in week count use effect");
             setCurrentStreak(currentStreak + 1);
-            updateStreak(user, true)
-                .catch((err) => {
-                    setCurrentStreak(currentStreak - 1);
-                    console.dir(err);
-                });
+            updateStreak(user, true).catch((err) => {
+                setCurrentStreak(currentStreak - 1);
+                console.dir(err);
+            });
         }
     }, [weekCount]);
 
-
-  return (
-    <View style={styles.container}>
-      <Text style={styles.weekTitle}>My Week So Far</Text>
-      <View style={styles.circleOverlay}>
-        <Text style={styles.weeklyCount}>{weekCount}</Text>
-      </View>
-      <View style={styles.streakContainer}>
-        <View style={styles.currentStreak}>Streak : {currentStreak}</View>
-        <View style={styles.space}></View>
-        <View style={styles.highestStreak}>Highest Streak: {highestStreak}</View>
-      </View>
-      <Text style={styles.plantsToGo}> {30 - weekCount > 0 ? `Only ${30 - weekCount} to go!`: `Congratulations! You made your 30 for the week!`}</Text>
-      <Text style={styles.badges}>{newBadge ? newBadge : ""}</Text>
-      <Text style={styles.addPlant}>Add a new plant</Text>
-      <AutoInput weekCount={weekCount} setWeekCount={setWeekCount} />
-    </View>
-  );
+    return (
+        <View style={styles.container}>
+            <Text style={styles.weekTitle}>My Week So Far</Text>
+            <View style={styles.circleOverlay}>
+                <Text style={styles.weeklyCount}>{weekCount}</Text>
+            </View>
+            <View style={styles.streakContainer}>
+                <View style={styles.currentStreak}>
+                    <Text>Streak : {currentStreak}</Text>
+                </View>
+                <View style={styles.space}></View>
+                <View style={styles.highestStreak}>
+                    <Text>Highest Streak: {highestStreak}</Text>
+                </View>
+            </View>
+            <Text style={styles.plantsToGo}>
+                {" "}
+                {30 - weekCount > 0
+                    ? `Only ${30 - weekCount} to go!`
+                    : `Congratulations! You made your 30 for the week!`}
+            </Text>
+            <Text style={styles.badges}>{newBadge ? newBadge : ""}</Text>
+            <Text style={styles.addPlant}>Add a new plant</Text>
+            <AutoInput weekCount={weekCount} setWeekCount={setWeekCount} />
+        </View>
+    );
 };
 const styles = StyleSheet.create({
     container: {
@@ -108,7 +115,7 @@ const styles = StyleSheet.create({
         alignItems: "center",
         justifyContent: "space-evenly",
         height: 70,
-        paddingTop: 20
+        paddingTop: 20,
     },
     currentStreak: {
         width: 150,
@@ -118,8 +125,8 @@ const styles = StyleSheet.create({
         justifyContent: "center",
         alignItems: "center",
     },
-    space : {
-      padding: 10,
+    space: {
+        padding: 10,
     },
     highestStreak: {
         width: 150,
@@ -134,12 +141,11 @@ const styles = StyleSheet.create({
         fontSize: 20,
         paddingBottom: 10,
     },
-    badges : {
-
-      borderWidth: 1,
-      fontSize: 14,
-      textAlign : "center",
-      padding: 10
+    badges: {
+        borderWidth: 1,
+        fontSize: 14,
+        textAlign: "center",
+        padding: 10,
     },
     addPlant: {
         fontFamily: "System",
@@ -147,5 +153,4 @@ const styles = StyleSheet.create({
         fontWeight: "bold",
         paddingTop: 15,
     },
-
 });
