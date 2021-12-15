@@ -49,8 +49,9 @@ export const HomeScreen = () => {
         <Text style={styles.weeklyCount}>{weekCount}</Text>
       </View>
       <View style={styles.streakContainer}>
-        <View style={styles.currentStreak}>{currentStreak}</View>
-        <View style={styles.highestStreak}>{highestStreak}</View>
+        <View style={styles.currentStreak}>Streak : {currentStreak}</View>
+        <View style={styles.space}></View>
+        <View style={styles.highestStreak}>Highest Streak: {highestStreak}</View>
       </View>
       <Text style={styles.plantsToGo}> {30 - weekCount > 0 ? `Only ${30 - weekCount} to go!`: `Congratulations! You made your 30 for the week!`}</Text>
       <Text style={styles.streak}>Current streak {currentStreak} week(s)!</Text>
@@ -88,7 +89,7 @@ const styles = StyleSheet.create({
     	height: 11,
     },
     shadowOpacity: 0.55,
-    shadowRadius: 14.78,
+    shadowRadius: 14,
   },
   weeklyCount: {
     fontSize: 80,
@@ -98,34 +99,35 @@ const styles = StyleSheet.create({
     justifyContent: "centre",
   },
   streakContainer : {
-    flex : 1,
+    paddingTop: 20,
     flexDirection : "row",
     alignItems: "center",
     justifyContent: "space-evenly",
-    padding : 10,
-    margin : 10
+    height : 70
   },
   currentStreak : {
-    width : 120,
-    height: 120,
+    width : 150,
+    height: 50,
     backgroundColor: "#FFC074",
-    borderRadius: 120 / 2,
     justifyContent: "center",
     alignItems : "center",
-
-  
+    flex : 1,
+    borderRadius: 5
+  },
+  space : {
+    padding: 10
   },
   highestStreak : {
-    width : 120,
-    height: 120,
+    width : 150,
+    height: 50,
     backgroundColor: "#FFC074",
-    borderRadius: 120 / 2,
     justifyContent: "center",
     alignItems : "center",
-
+    flex : 1,
+    borderRadius: 5
   },
   plantsToGo : {
-    paddingTop: 20,
+    paddingTop: 10,
     fontSize : 20,
   },
   streak : {
