@@ -1,4 +1,4 @@
-import { Button, Text, Image } from "react-native";
+import { Text, Image, View } from "react-native";
 import { ScrollView } from "react-native-gesture-handler";
 import { getAllBadges, getUser } from "../Api/getApi";
 import React, { useState, useEffect, useContext } from "react";
@@ -26,9 +26,10 @@ export const BadgesScreen = ({ navigation }) => {
 				error = "Something has gone wrong!";
 			});
 	}, []);
-
+	console.log();
 	const badgeArr = [];
-	const greyBadgeArr = [];
+	let greyBadgeArr = [];
+	if (data.length === 0) greyBadgeArr = badges;
 	badges.forEach((badge) => {
 		return data.forEach((userBadge) => {
 			if (badge.name === userBadge.name) {
@@ -41,29 +42,30 @@ export const BadgesScreen = ({ navigation }) => {
 	});
 
 	const normalList = () => {
+		if (badgeArr.length === 0) return "";
 		return badgeArr.map((badge) => {
 			return (
-				<ScrollView key={`${badge.name}`}>
+				<View key={`${badge.name}`}>
 					<Text>{error}</Text>
 					<Text>{badge.name}</Text>
 					<Image
 						source={{ uri: badge.img_url }}
 						style={{ width: 100, height: 100 }}
 					/>
-				</ScrollView>
+				</View>
 			);
 		});
 	};
 	const greyList = () => {
 		return greyBadgeArr.map((badge) => {
 			return (
-				<ScrollView key={badge.name}>
+				<View key={badge.name}>
 					<Text>{badge.name}</Text>
 					<Image
 						source={{ uri: badge.grey_url }}
 						style={{ width: 100, height: 100 }}
 					/>
-				</ScrollView>
+				</View>
 			);
 		});
 	};
