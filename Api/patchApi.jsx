@@ -21,3 +21,12 @@ export const resetWeek = (username) => {
 		return res.data;
 	});
 };
+export const updateStreak = (username, streakBool) => {
+	return plantAppApi
+		.patch(`/users/${username}/streak`, {
+			incStreak: streakBool,
+		})
+		.then((res) => {
+			return res;
+		});
+};
