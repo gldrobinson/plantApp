@@ -7,13 +7,14 @@ export const BadgesScreen = ({ navigation }) => {
 	const { user } = useContext(userContext);
 	const [badges, setBadges] = useState([]);
 	const [data, setData] = useState([]);
+	let error = "";
 	useEffect(() => {
 		getAllBadges()
 			.then((badgesFromApi) => {
 				setBadges(badgesFromApi);
 			})
-			.then((err) => {
-				console.log(err);
+			.catch((err) => {
+				error = "Something has gone wrong!";
 			});
 	}, []);
 	useEffect(() => {
@@ -22,22 +23,28 @@ export const BadgesScreen = ({ navigation }) => {
 				setData(dataFromApi.badges);
 			})
 			.then((err) => {
-				console.log(err);
+				error = "Something has gone wrong!";
 			});
 	}, []);
-	const greyBadgeArr = [];
+
 	const badgeArr = [];
+	const greyBadgeArr = [];
 	badges.forEach((badge) => {
 		return data.forEach((userBadge) => {
-			if (badge.name !== userBadge.name) {
+			if (badge.name === userBadge.name) {
+				badgeArr.push(badge);
+			}
+			if (!greyBadgeArr.includes(badge) && !badgeArr.includes(badge)) {
 				greyBadgeArr.push(badge);
-			} else badgeArr.push(badge);
+			}
 		});
 	});
+
 	const normalList = () => {
 		return badgeArr.map((badge) => {
 			return (
-				<ScrollView key={badge.name}>
+				<ScrollView key={`${badge.name}`}>
+					<Text>{error}</Text>
 					<Text>{badge.name}</Text>
 					<Image
 						source={{ uri: badge.img_url }}
