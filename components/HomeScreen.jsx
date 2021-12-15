@@ -8,12 +8,16 @@ import { updateStreak } from "../Api/patchApi";
 import { resetWeek } from "../Api/patchApi";
 import { ScrollView } from "react-native-gesture-handler";
 
-export const HomeScreen = ({weekCount, setWeekCount}) => {
+export const HomeScreen = ({
+	weekCount,
+	setWeekCount,
+	badgeMessage,
+	setBadgeMessage,
+}) => {
 	const { user } = useContext(userContext);
 	const [userInfo, setUserInfo] = useState({});
 	const [currentStreak, setCurrentStreak] = useState(0);
 	const [highestStreak, setHighestStreak] = useState(0);
-	const [badgeMessage, setBadgeMessage] = useState("");
 	const date = new Date();
 	const day = date.getDay();
 
@@ -45,34 +49,34 @@ export const HomeScreen = ({weekCount, setWeekCount}) => {
 	}, [weekCount]);
 	return (
 		<ScrollView>
-		<View style={styles.container}>
-			<Text style={styles.weekTitle}>My Week So Far</Text>
-			<View style={styles.circleOverlay}>
-				<Text style={styles.weeklyCount}>{weekCount}</Text>
-			</View>
-			<View style={styles.streakContainer}>
-				<View style={styles.currentStreak}>
-					<Text>Streak : {currentStreak}</Text>
+			<View style={styles.container}>
+				<Text style={styles.weekTitle}>My Week So Far</Text>
+				<View style={styles.circleOverlay}>
+					<Text style={styles.weeklyCount}>{weekCount}</Text>
 				</View>
-				<View style={styles.space}></View>
-				<View style={styles.highestStreak}>
-					<Text>Highest Streak: {highestStreak}</Text>
+				<View style={styles.streakContainer}>
+					<View style={styles.currentStreak}>
+						<Text>Streak : {currentStreak}</Text>
+					</View>
+					<View style={styles.space}></View>
+					<View style={styles.highestStreak}>
+						<Text>Highest Streak: {highestStreak}</Text>
+					</View>
 				</View>
+				<Text style={styles.plantsToGo}>
+					{" "}
+					{30 - weekCount > 0
+						? `Only ${30 - weekCount} to go!`
+						: `Congratulations! You made your 30 for the week!`}
+					{`\n${badgeMessage}`}
+				</Text>
+				<Text style={styles.addPlant}>Add a new plant</Text>
+				<AutoInput
+					weekCount={weekCount}
+					setWeekCount={setWeekCount}
+					setBadgeMessage={setBadgeMessage}
+				/>
 			</View>
-			<Text style={styles.plantsToGo}>
-				{" "}
-				{30 - weekCount > 0
-					? `Only ${30 - weekCount} to go!`
-					: `Congratulations! You made your 30 for the week!`}
-				{`\n${badgeMessage}`}
-			</Text>
-			<Text style={styles.addPlant}>Add a new plant</Text>
-			<AutoInput
-				weekCount={weekCount}
-				setWeekCount={setWeekCount}
-				setBadgeMessage={setBadgeMessage}
-			/>
-		</View>
 		</ScrollView>
 	);
 };

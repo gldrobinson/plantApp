@@ -3,7 +3,7 @@ import { ScrollView } from "react-native-gesture-handler";
 import { getAllBadges, getUser } from "../Api/getApi";
 import React, { useState, useEffect, useContext } from "react";
 import { userContext } from "../contexts/userContext";
-export const BadgesScreen = ({ navigation }) => {
+export const BadgesScreen = ({ navigation, badgeMessage }) => {
 	const { user } = useContext(userContext);
 	const [badges, setBadges] = useState([]);
 	const [data, setData] = useState([]);
@@ -16,7 +16,7 @@ export const BadgesScreen = ({ navigation }) => {
 			.catch((err) => {
 				error = "Something has gone wrong!";
 			});
-	}, [user]);
+	}, [user, badgeMessage]);
 	useEffect(() => {
 		getUser(user)
 			.then((dataFromApi) => {
@@ -25,7 +25,7 @@ export const BadgesScreen = ({ navigation }) => {
 			.then((err) => {
 				error = "Something has gone wrong!";
 			});
-	}, [user]);
+	}, [user, badgeMessage]);
 	const badgeArr = [];
 	let greyBadgeArr = [];
 	if (data.length === 0) greyBadgeArr = badges;
