@@ -12,19 +12,20 @@ export const Logout = () => {
             <Button
                 title="Logout"
                 onPress={handlePress}
-                style={styles.logout}
+                color= "black"
             ></Button>
         </View>
     );
 };
 const styles = StyleSheet.create({
     container: {
-        backgroundColor: "#01937C",
-        paddingTop: 50,
+        backgroundColor: "#FAF1E6",
+        paddingRight: 20
     },
-    logout: {
-        width: 10,
-        color: "#FFC074",
-        alignItems: "flex-end",
-    },
+    // logout: {
+    //     width: 10,
+    //     color: "black",
+    //     alignItems: "flex-end",
+        
+    // },
 });
