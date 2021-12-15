@@ -7,6 +7,7 @@ import { getUser } from "../Api/getApi";
 import { updateStreak } from "../Api/patchApi";
 import badgeFunc from "../badge-utils";
 import { resetWeek } from "../Api/patchApi";
+import { ScrollView } from "react-native-gesture-handler";
 
 export const HomeScreen = () => {
 	const { user } = useContext(userContext);
@@ -57,6 +58,7 @@ export const HomeScreen = () => {
 	};
 
 	return (
+		<ScrollView>
 		<View style={styles.container}>
 			<Text style={styles.weekTitle}>My Week So Far</Text>
 			<View style={styles.circleOverlay}>
@@ -83,6 +85,7 @@ export const HomeScreen = () => {
 				displayedBadge={displayedBadge}
 			/>
 		</View>
+		</ScrollView>
 	);
 };
 const styles = StyleSheet.create({
