@@ -62,42 +62,42 @@ export const badgeFunc = (userData) => {
 		if (plant.cateogory === "herbs-and-spices") return plant;
 	});
 	if (seeds.length >= 5 && !filter.includes(fiveSeeds)) {
-		addBadge(user, fiveSeeds);
+		addBadge(userData.username, fiveSeeds);
 		message =
 			"You have earned the 5 different seeds badge!\nCheck the badges page to see your new badge!";
 	}
 	if (vegetables.length >= 5 && !filter.includes(fiveVeg.name)) {
-		addBadge(user, fiveVeg);
+		addBadge(userData.username, fiveVeg);
 		message =
 			"You have earned the 5 different vegetables badge!\nCheck the badges page to see your new badge!";
 	}
 	if (vegetables.length >= 10 && !filter.includes(tenVeg.name)) {
-		addBadge(user, tenVeg);
+		addBadge(userData.username, tenVeg);
 		message =
 			"You have earned the 10 different vegetables badge!\nCheck the badges page to see your new badge!";
 	}
 	if (nuts.length >= 5 && !filter.includes(fiveNuts.name)) {
-		addBadge(user, fiveNuts);
+		addBadge(userData.username, fiveNuts);
 		message =
 			"You have earned the 5 different nuts badge!\nCheck the badges page to see your new badge!";
 	}
 	if (grains.length >= 5 && !filter.includes(fiveGrains.name)) {
-		addBadge(user, fiveGrains);
+		addBadge(userData.username, fiveGrains);
 		message =
 			"You have earned the 5 different grains badge!\nCheck the badges page to see your new badge!";
 	}
 	if (fruits.length >= 5 && !filter.includes(fiveFruits.name)) {
-		addBadge(user, fiveFruits);
+		addBadge(userData.username, fiveFruits);
 		message =
 			"You have earned the 5 different fruits badge!\nCheck the badges page to see your new badge!";
 	}
 	if (fruits.length >= 10 && !filter.includes(tenFruits.name)) {
-		addBadge(user, tenFruits);
+		addBadge(userData.username, tenFruits);
 		message =
 			"You have earned the 10 different fruits badge!\nCheck the badges page to see your new badge!";
 	}
 	if (herbsAndSpices.length >= 5 && !filter.includes(fiveHerbs.name)) {
-		addBadge(user, fiveHerbs);
+		addBadge(userData.username, fiveHerbs);
 		message =
 			"You have earned the 5 different herbs and spices badge!\nCheck the badges page to see your new badge!";
 	}
