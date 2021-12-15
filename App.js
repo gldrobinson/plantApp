@@ -12,6 +12,7 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { userContext } from "./contexts/userContext";
 import { SignInOverlay } from "./components/SignInOverlay";
 import { Logout } from "./components/Logout";
+import { Icon } from "react-native-elements";
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -42,7 +43,15 @@ export default function App() {
                 <Tab.Navigator
                     screenOptions={{
                         headerShown: false,
-                        tabBarStyle: { backgroundColor: "#B6C867" },
+                        tabBarStyle: {
+                            backgroundColor: "#FFC074",
+                            height: 70,
+                            paddingTop: 10,
+                        },
+                        showIcon: true,
+                        tabBarShowLabel: false,
+                        tabBarActiveTintColor: "#B6C867",
+                        tabBarInactiveTintColor: "#01937C",
                     }}
                 >
                     <Tab.Screen
@@ -59,14 +68,56 @@ export default function App() {
                                 setCurrentDate={setCurrentDate}
                             />
                         )}
+                        options={{
+                            tabBarIcon: ({ tintColor }) => (
+                                <Icon
+                                    name="home"
+                                    size={30}
+                                    style={{ color: tintColor }}
+                                    focused="false"
+                                />
+                            ),
+                        }}
                     />
                     <Tab.Screen
                         name="Your week"
                         component={WeekScreen}
-                        title=""
+                        options={{
+                            tabBarIcon: (tabInfo) => (
+                                <Icon
+                                    name="today"
+                                    size={30}
+                                    color={tabInfo.tintColor}
+                                />
+                            ),
+                        }}
                     />
-                    <Tab.Screen name="Badges" component={BadgesScreen} />
-                    <Tab.Screen name="Info" component={InfoScreen} />
+                    <Tab.Screen
+                        name="Badges"
+                        component={BadgesScreen}
+                        options={{
+                            tabBarIcon: (tabInfo) => (
+                                <Icon
+                                    name="star"
+                                    size={30}
+                                    color={tabInfo.tintColor}
+                                />
+                            ),
+                        }}
+                    />
+                    <Tab.Screen
+                        name="Info"
+                        component={InfoScreen}
+                        options={{
+                            tabBarIcon: (tabInfo) => (
+                                <Icon
+                                    name="info"
+                                    size={30}
+                                    color={tabInfo.tintColor}
+                                />
+                            ),
+                        }}
+                    />
                 </Tab.Navigator>
 
                 {/* <Stack.Navigator>
