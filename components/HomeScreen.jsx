@@ -14,18 +14,20 @@ export const HomeScreen = () => {
 	const [weekCount, setWeekCount] = useState([]);
 	const [currentStreak, setCurrentStreak] = useState(0);
 	const [highestStreak, setHighestStreak] = useState(0);
+	const [newBadge, setNewBadge] = useState("");
 	const date = new Date();
 	const day = date.getDay();
+
 	useEffect(() => {
 		getUser(user)
 			.then((userData) => {
 				setUserInfo(userData);
-				badgeFunc(userData);
+				setNewBadge(badgeFunc(userData));
 				setWeekCount(userData.currentWeek.length);
 				setCurrentStreak(userData.streak.currentStreak);
 			})
 			.then((userData) => {
-				if (day === 2) {
+				if (day === 0) {
 					resetWeek(userData.username);
 				}
 			})
@@ -65,6 +67,7 @@ export const HomeScreen = () => {
 					? `Only ${30 - weekCount} to go!`
 					: `Congratulations! You made your 30 for the week!`}
 			</Text>
+			<Text>{newBadge ? newBadge : ""}</Text>
 			<Text style={styles.streak}>Current streak {currentStreak} week(s)!</Text>
 			<Text style={styles.addPlant}>Add a new plant</Text>
 			<AutoInput weekCount={weekCount} setWeekCount={setWeekCount} />
