@@ -38,6 +38,7 @@ export const AutoInput = ({ weekCount, setWeekCount }) => {
 	}
 
 	const handleOnSubmit = () => {
+		let message;
 		// if no value is inputted, return a message for the user.
 		if (selectedValue === "") {
 			setPlaceholderText(
@@ -61,22 +62,27 @@ export const AutoInput = ({ weekCount, setWeekCount }) => {
 						setWeekCount((currentCount) => {
 							return currentCount + 1;
 						});
+						return userData;
+					})
+					.then((userData) => {
+						console.log(userData);
 						badgeFunc(userData);
 					})
 					.catch((err) => {
 						// if food selected already exists in week, return a message for the user.
-						if (
-							err.response.data.message ===
-							"Plant already added to current week"
-						) {
-							setPlaceholderText(
-								"It looks like you've already added that food this week! Why not try something new!"
-							);
-						} else {
-							setPlaceholderText(
-								"Oops something went wrong! Please try again :)"
-							);
-						}
+						// if (
+						// 	err.response.data.message ===
+						// 	"Plant already added to current week"
+						// ) {
+						setPlaceholderText(
+							"It looks like you've already added that food this week! Why not try something new!"
+						);
+						// }
+						// else {
+						// 	setPlaceholderText(
+						// 		"Oops something went wrong! Please try again :)"
+						// 	);
+						// }
 					});
 			}
 		}

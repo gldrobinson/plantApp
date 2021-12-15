@@ -22,8 +22,7 @@ export default function App() {
 	const [currentStreak, setCurrentStreak] = useState(0);
 	const [signUpDate, setSignUpDate] = useState(null);
 	const [currentDate, setCurrentDate] = useState(null);
-	console.log(signUpDate, "signUpDate");
-	console.log(currentDate, "currentDate");
+
 	return (
 		<userContext.Provider value={{ user, updateUser }}>
 			<NavigationContainer>

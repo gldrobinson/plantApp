@@ -5,17 +5,14 @@ import { PlantsToGo } from "./PlantsToGo";
 import { AutoInput } from "./AutoComplete";
 import { getUser } from "../Api/getApi";
 import { updateStreak } from "../Api/patchApi";
-import badgeFunc from "../badge-utils";
 import { resetWeek } from "../Api/patchApi";
 
 export const HomeScreen = () => {
 	const { user } = useContext(userContext);
 	const [userInfo, setUserInfo] = useState({});
-	const [weekCount, setWeekCount] = useState([]);
+	const [weekCount, setWeekCount] = useState(0);
 	const [currentStreak, setCurrentStreak] = useState(0);
 	const [highestStreak, setHighestStreak] = useState(0);
-	const [displayedBadge, setDisplayedBadge] = useState(false);
-	const [newBadge, setNewBadge] = useState("");
 	const date = new Date();
 	const day = date.getDay();
 
@@ -26,9 +23,6 @@ export const HomeScreen = () => {
 				setWeekCount(userData.currentWeek.length);
 				setHighestStreak(userData.streak.highestStreak);
 				setCurrentStreak(userData.streak.currentStreak);
-				if (setDisplayedBadge === false) {
-					setNewBadge(badgeFunc(userData));
-				}
 			})
 			.then((userData) => {
 				if (day === 0) {
@@ -38,7 +32,7 @@ export const HomeScreen = () => {
 			.catch((err) => {
 				console.log(err);
 			});
-	}, [user, displayedBadge, currentStreak]);
+	}, [user, currentStreak]);
 	useEffect(() => {
 		if (weekCount === 30) {
 			setCurrentStreak(currentStreak + 1);
@@ -48,13 +42,6 @@ export const HomeScreen = () => {
 			});
 		}
 	}, [weekCount]);
-
-	const badge = () => {
-		if (newBadge) {
-			setDisplayedBadge === true;
-			return <Text style={styles.badges}>{newBadge}</Text>;
-		} else "";
-	};
 
 	return (
 		<View style={styles.container}>
@@ -75,13 +62,8 @@ export const HomeScreen = () => {
 					? `Only ${30 - weekCount} to go!`
 					: `Congratulations! You made your 30 for the week!`}
 			</Text>
-			{badge()}
 			<Text style={styles.addPlant}>Add a new plant</Text>
-			<AutoInput
-				weekCount={weekCount}
-				setWeekCount={setWeekCount}
-				displayedBadge={displayedBadge}
-			/>
+			<AutoInput weekCount={weekCount} setWeekCount={setWeekCount} />
 		</View>
 	);
 };
