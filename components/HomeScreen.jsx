@@ -58,8 +58,12 @@ export const HomeScreen = () => {
                 <Text style={styles.weeklyCount}>{weekCount}</Text>
             </View>
             <View style={styles.streakContainer}>
-                <View style={styles.currentStreak}>{currentStreak}</View>
-                <View style={styles.highestStreak}>{highestStreak}</View>
+                <View style={styles.currentStreak}>
+                    <Text>{currentStreak}</Text>
+                </View>
+                <View style={styles.highestStreak}>
+                    <Text>{highestStreak}</Text>
+                </View>
             </View>
             <Text style={styles.plantsToGo}>
                 {" "}
@@ -85,7 +89,7 @@ const styles = StyleSheet.create({
         backgroundColor: "#FAF1E6",
     },
     weekTitle: {
-        fontFamily: "chalkduster",
+        fontFamily: "System",
         fontSize: 26,
         fontWeight: "bold",
         padding: 15,
@@ -112,7 +116,7 @@ const styles = StyleSheet.create({
         // textAlign: "center",
         fontWeight: "bold",
         alignItems: "center",
-        justifyContent: "centre",
+        justifyContent: "center",
     },
     streakContainer: {
         flex: 1,
@@ -147,7 +151,7 @@ const styles = StyleSheet.create({
         fontSize: 20,
     },
     addPlant: {
-        fontFamily: "chalkduster",
+        fontFamily: "System",
         fontSize: 20,
         fontWeight: "bold",
         paddingTop: 15,
