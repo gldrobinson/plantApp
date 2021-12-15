@@ -1,4 +1,4 @@
-import { Text, Image, View } from "react-native";
+import { Text, Image, View, StyleSheet } from "react-native";
 import { ScrollView } from "react-native-gesture-handler";
 import { getAllBadges, getUser } from "../Api/getApi";
 import React, { useState, useEffect, useContext } from "react";
@@ -45,13 +45,13 @@ export const BadgesScreen = ({ navigation }) => {
 		if (badgeArr.length === 0) return "";
 		return badgeArr.map((badge) => {
 			return (
-				<View key={`${badge.name}`}>
+				<View style={styles.badge}  key={`${badge.name}`}>
 					<Text>{error}</Text>
-					<Text>{badge.name}</Text>
 					<Image
 						source={{ uri: badge.img_url }}
 						style={{ width: 100, height: 100 }}
 					/>
+					<Text style={styles.badgeText}>{badge.name}</Text>
 				</View>
 			);
 		});
@@ -59,20 +59,47 @@ export const BadgesScreen = ({ navigation }) => {
 	const greyList = () => {
 		return greyBadgeArr.map((badge) => {
 			return (
-				<View key={badge.name}>
-					<Text>{badge.name}</Text>
+				<View style={styles.badge} key={badge.name}>
 					<Image
 						source={{ uri: badge.grey_url }}
 						style={{ width: 100, height: 100 }}
 					/>
+					<Text style={styles.badgeText}>{badge.name}</Text>
 				</View>
 			);
 		});
 	};
 	return (
+		
 		<ScrollView>
+			<View style={styles.container}>
 			{normalList()}
 			{greyList()}
+			</View>
 		</ScrollView>
+		
 	);
 };
+const styles = StyleSheet.create({
+	container: {
+		flex : 1,
+		flexDirection: "row",
+		flexWrap: "wrap",
+		backgroundColor: "#FAF1E6",
+		borderWidth: 1,
+		justifyContent: "space-evenly",
+		alignItems : "center"
+	},
+	badge : {
+		width: 120,
+		height: 140,
+		alignItems: "center",
+		justifyContent : "center"
+	},
+	badgeText : {
+		paddingTop: 5,
+		textTransform: "capitalize",
+		textAlign : "center",
+		fontStyle: "italic"
+	}
+})
