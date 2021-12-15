@@ -67,5 +67,7 @@ const styles = StyleSheet.create({
     container: {
         alignContent: "center",
         backgroundColor: "#FAF1E6",
+        paddingTop: 10,
+        paddingBottom: 50,
     },
 });
