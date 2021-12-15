@@ -22,12 +22,13 @@ export default function App() {
 	const [currentStreak, setCurrentStreak] = useState(0);
 	const [signUpDate, setSignUpDate] = useState(null);
 	const [currentDate, setCurrentDate] = useState(null);
-
+	// console.log(signUpDate, "signUpDate");
+	// console.log(currentDate, "currentDate");
 	return (
 		<userContext.Provider value={{ user, updateUser }}>
 			<NavigationContainer>
-				<Header style={{ justifyContent: "center" }} />
 				<Logout />
+				<Header style={{ justifyContent: "center" }} />
 				<SignInOverlay
 					weekCount={weekCount}
 					setWeekCount={setWeekCount}
@@ -38,7 +39,12 @@ export default function App() {
 					currentDate={currentDate}
 					setCurrentDate={setCurrentDate}
 				/>
-				<Tab.Navigator screenOptions={{ headerShown: false }}>
+				<Tab.Navigator
+					screenOptions={{
+						headerShown: false,
+						tabBarStyle: { backgroundColor: "#B6C867" },
+					}}
+				>
 					<Tab.Screen
 						name="Home"
 						children={() => (
