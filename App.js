@@ -11,7 +11,6 @@ import { InfoScreen } from "./components/InfoScreen";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { userContext } from "./contexts/userContext";
 import { SignInOverlay } from "./components/SignInOverlay";
-import { Logout } from "./components/Logout";
 import { Icon } from "react-native-elements";
 
 const Stack = createNativeStackNavigator();
@@ -23,10 +22,10 @@ export default function App() {
     const [currentStreak, setCurrentStreak] = useState(0);
     const [signUpDate, setSignUpDate] = useState(null);
     const [currentDate, setCurrentDate] = useState(null);
-
+    const [badgeMessage, setBadgeMessage] = useState("");
     return (
         <userContext.Provider value={{ user, updateUser }}>
-            <NavigationContainer>
+            <NavigationContainer style={styles.container}>
                 <Header style={{ justifyContent: "center" }} />
                 <SignInOverlay
                     weekCount={weekCount}
@@ -64,6 +63,8 @@ export default function App() {
                                 setSignUpDate={setSignUpDate}
                                 currentDate={currentDate}
                                 setCurrentDate={setCurrentDate}
+                                setBadgeMessage={setBadgeMessage}
+                                badgeMessage={badgeMessage}
                             />
                         )}
                         options={{
@@ -79,7 +80,7 @@ export default function App() {
                     />
                     <Tab.Screen
                         name="Your week"
-                        component={WeekScreen}
+                        children={() => <WeekScreen weekCount={weekCount} />}
                         options={{
                             tabBarIcon: (tabInfo) => (
                                 <Icon
@@ -92,7 +93,9 @@ export default function App() {
                     />
                     <Tab.Screen
                         name="Badges"
-                        component={BadgesScreen}
+                        children={() => (
+                            <BadgesScreen badgeMessage={badgeMessage} />
+                        )}
                         options={{
                             tabBarIcon: (tabInfo) => (
                                 <Icon
@@ -131,10 +134,7 @@ export default function App() {
 }
 
 const styles = StyleSheet.create({
-    // container: {
-    //     flex: 1,
-    //     backgroundColor: "#fff",
-    //     alignItems: "center",
-    //     justifyContent: "center",
-    // },
+    container: {
+        backgroundColor: "#FAF1E6",
+    },
 });

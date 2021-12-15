@@ -3,20 +3,26 @@ import { ScrollView } from "react-native-gesture-handler";
 import { getAllBadges, getUser } from "../Api/getApi";
 import React, { useState, useEffect, useContext } from "react";
 import { userContext } from "../contexts/userContext";
-export const BadgesScreen = ({ navigation }) => {
+export const BadgesScreen = ({ navigation, badgeMessage }) => {
 	const { user } = useContext(userContext);
 	const [badges, setBadges] = useState([]);
 	const [data, setData] = useState([]);
+	const [url, setUrl] = useState([]);
 	let error = "";
+	console.log(badgeMessage);
 	useEffect(() => {
 		getAllBadges()
 			.then((badgesFromApi) => {
-				setBadges(badgesFromApi);
+				if (badgesFromApi) {
+					setBadges(badgesFromApi);
+				}
 			})
 			.catch((err) => {
 				error = "Something has gone wrong!";
 			});
-	}, [user]);
+	}, [user, badgeMessage]);
+	let badgeArr = [];
+	let greyBadgeArr = [];
 	useEffect(() => {
 		getUser(user)
 			.then((dataFromApi) => {
@@ -25,55 +31,73 @@ export const BadgesScreen = ({ navigation }) => {
 			.then((err) => {
 				error = "Something has gone wrong!";
 			});
-	}, [user]);
-	const badgeArr = [];
-	let greyBadgeArr = [];
+	}, [user, badgeMessage]);
 	if (data.length === 0) greyBadgeArr = badges;
 	badges.forEach((badge) => {
 		return data.forEach((userBadge) => {
-			if (badge.name === userBadge.name) {
+			if (badge === userBadge && !badgeArr.includes(badge)) {
 				badgeArr.push(badge);
-			}
-			if (!greyBadgeArr.includes(badge) && !badgeArr.includes(badge)) {
-				greyBadgeArr.push(badge);
 			}
 		});
 	});
 
 	const normalList = () => {
 		if (badgeArr.length === 0) return "";
-		return badgeArr.map((badge) => {
-			return (
-				<View style={styles.badge} key={`${badge.name}`}>
-					<Text>{error}</Text>
-					<Image
-						source={{ uri: badge.img_url }}
-						style={{ width: 100, height: 100 }}
-					/>
-					<Text style={styles.badgeText}>{badge.name}</Text>
-				</View>
-			);
-		});
+		// return badgeArr.map((badge) => {
+		// 	return (
+		// 		<View style={styles.badge} key={`${badge.name}`}>
+		// 			<Text>{error}</Text>
+		// 			<Image
+		// 				source={{ uri: badge.img_url }}
+		// 				style={{ width: 100, height: 100 }}
+		// 			/>
+		// 			<Text style={styles.badgeText}>{badge.name}</Text>
+		// 		</View>
+		// 	);
+		// });
 	};
 	const greyList = () => {
-		return greyBadgeArr.map((badge) => {
-			return (
-				<View style={styles.badge} key={badge.name}>
-					<Image
-						source={{ uri: badge.grey_url }}
-						style={{ width: 100, height: 100 }}
-					/>
-					<Text style={styles.badgeText}>{badge.name}</Text>
-				</View>
-			);
-		});
+		// return greyBadgeArr.map((badge) => {
+		// 	return (
+		// 		<View style={styles.badge} key={badge.name}>
+		// 			<Image
+		// 				source={{ uri: badge.grey_url }}
+		// 				style={{ width: 100, height: 100 }}
+		// 			/>
+		// 			<Text style={styles.badgeText}>{badge.name}</Text>
+		// 		</View>
+		// 	);
+		// });
 	};
 	return (
 		<ScrollView>
 			<Text style={styles.badgeHeader}>My badges</Text>
 			<View style={styles.container}>
-				{normalList()}
-				{greyList()}
+				{badgeArr.map((badge) => {
+					return (
+						<View style={styles.badge} key={`${badge.name}`}>
+							<Text>{error}</Text>
+							<Image
+								source={{ uri: badge.img_url }}
+								style={{ width: 100, height: 100 }}
+							/>
+							<Text style={styles.badgeText}>{badge.name}</Text>
+						</View>
+					);
+				})}
+				{greyBadgeArr.map((badge) => {
+					return (
+						<View style={styles.badge} key={badge.name}>
+							<Image
+								source={{ uri: badge.grey_url }}
+								style={{ width: 100, height: 100 }}
+							/>
+							<Text style={styles.badgeText}>{badge.name}</Text>
+						</View>
+					);
+				})}
+				{/* {normalList()} */}
+				{/* {greyList()} */}
 			</View>
 		</ScrollView>
 	);
