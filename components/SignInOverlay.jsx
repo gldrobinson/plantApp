@@ -6,6 +6,7 @@ import { userContext } from "../contexts/userContext";
 import { getUser } from "../Api/getApi";
 import { addUser } from "../Api/postApi";
 import { getDateForTimer } from "../utils/dateSetter";
+import { Image } from "react-native-elements";
 // import { updateUser } from "../contexts/userContext";
 
 export const SignInOverlay = ({
@@ -24,6 +25,7 @@ export const SignInOverlay = ({
   const [newName, setNewName] = useState("");
   const [usernameMessage, setUsernameMessage] = useState("");
   const [signUpMessage, setSignUpMessage] = useState("");
+  const logoUrl = "https://i.postimg.cc/rpB4dCn6/logo-rooting.png";
 
   const toggleOverlay = () => {
     if (user === null) {
@@ -74,6 +76,13 @@ export const SignInOverlay = ({
   return (
     <View>
       <Overlay isVisible={visible}>
+        <Image
+          source={{
+            uri: logoUrl,
+          }}
+          style={{ width: 300, height: 100, resizeMode: "contain" }}
+          placeholderStyle={{ backgroundColor: "transparent" }}
+        />
         <Text>Sign in:</Text>
         <TextInput
           placeholder="username"
