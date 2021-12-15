@@ -79,6 +79,13 @@ const fiveHerbs = {
 	description: "you have eaten five different herbs and spices",
 };
 
+const fiveGrains = {
+	name: "5 grains",
+	img_url: "https://i.postimg.cc/267CGDJH/ice-gem-badge.png",
+	grey_url: "https://i.postimg.cc/fy4yktpL/grey-ice-gem-badge.png",
+	description: "you have eaten five different types of grains",
+}
+
 module.exports = {
 	oneWeek,
 	twoWeeks,
@@ -92,4 +99,5 @@ module.exports = {
 	fiveFruits,
 	tenFruits,
 	fiveHerbs,
+	fiveGrains
 };

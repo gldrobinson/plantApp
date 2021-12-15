@@ -12,6 +12,7 @@ import {
 	fiveFruits,
 	tenFruits,
 	fiveHerbs,
+	fiveGrains
 } from "./badges";
 export const badgeFunc = (userData) => {
 	const filter = userData.badges.map((badge) => {

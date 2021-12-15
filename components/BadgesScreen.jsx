@@ -56,6 +56,7 @@ export const BadgesScreen = ({ navigation, badgeMessage }) => {
 	// })
 
 	console.log(greyBadgeArr)
+	console.log(badgeMessage, " < -- badge message")
 
 	// if (userBadges.length === 0) {
 
