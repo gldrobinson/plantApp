@@ -72,6 +72,7 @@ export const BadgesScreen = ({ navigation }) => {
 	return (
 		
 		<ScrollView>
+			<Text style={styles.badgeHeader}>My badges</Text>
 			<View style={styles.container}>
 			{normalList()}
 			{greyList()}
@@ -81,12 +82,22 @@ export const BadgesScreen = ({ navigation }) => {
 	);
 };
 const styles = StyleSheet.create({
+	badgeHeader: {
+		fontSize: 26,
+        fontFamily: "System",
+        fontWeight: "bold",
+        textAlign: "center",
+		justifyContent: "center",
+        alignItems: "center",
+        padding: 5,
+        color: "#01937C",
+		backgroundColor: "#FFC074"
+	},
 	container: {
 		flex : 1,
 		flexDirection: "row",
 		flexWrap: "wrap",
 		backgroundColor: "#FAF1E6",
-		borderWidth: 1,
 		justifyContent: "space-evenly",
 		alignItems : "center"
 	},
