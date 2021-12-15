@@ -76,12 +76,12 @@ export const WeekScreen = () => {
 const styles = StyleSheet.create({
     weekSubHeader: {
         fontSize: 18,
-        fontFamily: "chalkduster",
+        fontFamily: "System",
         fontWeight: "bold",
         textAlign: "center",
         alignItems: "center",
-        paddingBottom: "0.5rem",
-        paddingTop: "0.2rem",
+        paddingBottom: 5,
+        paddingTop: 3,
         color: "#01937C",
     },
     container: {
