@@ -75,7 +75,7 @@ export const WeekScreen = () => {
 
 const styles = StyleSheet.create({
     weekSubHeader: {
-        fontSize: 18,
+        fontSize: 22,
         fontFamily: "System",
         fontWeight: "bold",
         textAlign: "center",
