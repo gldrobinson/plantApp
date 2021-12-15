@@ -11,7 +11,6 @@ import { InfoScreen } from "./components/InfoScreen";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { userContext } from "./contexts/userContext";
 import { SignInOverlay } from "./components/SignInOverlay";
-import { Logout } from "./components/Logout";
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -58,7 +57,13 @@ export default function App() {
 							/>
 						)}
 					/>
-					<Tab.Screen name="Your week" component={WeekScreen} title="" />
+					<Tab.Screen 
+						name="Your week" 
+						children={() => (
+							<WeekScreen
+							weekCount={weekCount}
+							 />)} title="" 
+					/>
 					<Tab.Screen name="Badges" component={BadgesScreen} />
 					<Tab.Screen name="Info" component={InfoScreen} />
 				</Tab.Navigator>
