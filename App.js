@@ -120,14 +120,6 @@ export default function App() {
                         }}
                     />
                 </Tab.Navigator>
-
-                {/* <Stack.Navigator>
-        { <View style={styles.container}> */}
-                {/* <Stack.Screen name="Home" component={NavBar} /> */}
-                {/* <Stack.Screen name="Account" component={ProfileScreen} /> */}
-                {/* <Stack.Screen name="Badges" component={BadgesScreen} /> */}
-                {/* </View> */}
-                {/* </Stack.Navigator> */}
             </NavigationContainer>
         </userContext.Provider>
     );
