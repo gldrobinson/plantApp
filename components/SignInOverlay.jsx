@@ -9,104 +9,97 @@ import { getDateForTimer } from "../utils/dateSetter";
 // import { updateUser } from "../contexts/userContext";
 
 export const SignInOverlay = ({
-	weekCount,
-	setWeekCount,
-	setCurrentStreak,
-	signUpDate,
-	setSignUpDate,
-	surrentDate,
-	setCurrentDate,
+  weekCount,
+  setWeekCount,
+  setCurrentStreak,
+  signUpDate,
+  setSignUpDate,
+  surrentDate,
+  setCurrentDate,
 }) => {
-	const [visible, setVisible] = useState(true);
-	const [userLogin, setUserLogin] = useState("");
-	const { user, updateUser } = useContext(userContext);
-	const [newUsername, setNewUsername] = useState("");
-	const [newName, setNewName] = useState("");
+  const [visible, setVisible] = useState(true);
+  const [userLogin, setUserLogin] = useState("");
+  const { user, updateUser } = useContext(userContext);
+  const [newUsername, setNewUsername] = useState("");
+  const [newName, setNewName] = useState("");
+  const [usernameMessage, setUsernameMessage] = useState("");
 
-	const toggleOverlay = () => {
-		if (user === null) {
-			setVisible(true);
-		} else {
-			setVisible(false);
-		}
-	};
+  const toggleOverlay = () => {
+    if (user === null) {
+      setVisible(true);
+    } else {
+      setVisible(false);
+    }
+  };
 
-	useEffect(() => {
-		toggleOverlay();
-	}, [user]);
+  useEffect(() => {
+    toggleOverlay();
+  }, [user]);
 
-	const handleSignIn = () => {
-		getUser(userLogin).then((user) => {
-			updateUser(user.username);
-			setWeekCount(user.currentWeek.length);
-			setCurrentStreak(user.streak.currentStreak);
-			setCurrentDate(Date.now());
-		});
-	};
+  const handleSignIn = () => {
+    if (userLogin === "") {
+      setUsernameMessage("Please add your username");
+    } else {
+      getUser(userLogin)
+        .then((user) => {
+          updateUser(user.username);
+          setWeekCount(user.currentWeek.length);
+          setCurrentStreak(user.streak.currentStreak);
+          setCurrentDate(Date.now());
+        })
+        .catch((err) => {
+          setVisible(true);
+          setUsernameMessage("Username not found");
+        });
+    }
+  };
 
-	const handleSignUp = () => {
-		addUser({
-			username: newUsername,
-			name: newName,
-		}).then((user) => {
-			updateUser(user.username);
-			setWeekCount(user.currentWeek.length);
-			setCurrentStreak(user.streak.currentStreak);
-			setSignUpDate(getDateForTimer());
-		});
-	};
+  const handleSignUp = () => {
+    addUser({
+      username: newUsername,
+      name: newName,
+    }).then((user) => {
+      updateUser(user.username);
+      setWeekCount(user.currentWeek.length);
+      setCurrentStreak(user.streak.currentStreak);
+      setSignUpDate(getDateForTimer());
+    });
+  };
 
-	// return (
-	//   <View>
-	//     <Overlay isVisible={visible}>
-	//       <Text>Please input your username:</Text>
-	//       <TextInput
-	//         onChange={(e) => {
-	//           const input = e.nativeEvent.text;
-	//           setUserLogin(input);
-	//         }}
-	//         style={{ height: 30, borderColor: "gray", borderWidth: 1 }}
-	//       ></TextInput>
-	//       <Button title="Submit" onPress={handleSignIn}></Button>
-	//     </Overlay>
-	//   </View>
-	// );
+  return (
+    <View>
+      <Overlay isVisible={visible}>
+        <Text>Sign in:</Text>
+        <TextInput
+          placeholder="username"
+          onChange={(e) => {
+            const input = e.nativeEvent.text;
+            setUserLogin(input);
+          }}
+          style={{ height: 30, borderColor: "gray", borderWidth: 1 }}
+        ></TextInput>
+        <Text>{usernameMessage}</Text>
+        <Button title="Submit" onPress={handleSignIn}></Button>
 
-	return (
-		<View>
-			<Overlay isVisible={visible}>
-				<Text>Sign in:</Text>
-				<TextInput
-					placeholder="Username"
-					onChange={(e) => {
-						const input = e.nativeEvent.text;
-						setUserLogin(input);
-					}}
-					style={{ height: 30, borderColor: "gray", borderWidth: 1 }}
-				></TextInput>
-				<Button title="Submit" onPress={handleSignIn}></Button>
-
-				<Text>Sign up:</Text>
-				<TextInput
-					placeholder="Username"
-					onChange={(e) => {
-						const input = e.nativeEvent.text;
-						setNewUsername(input);
-					}}
-					style={{ height: 30, borderColor: "gray", borderWidth: 1 }}
-				></TextInput>
-				<TextInput
-					placeholder="First name"
-					onChange={(e) => {
-						const input = e.nativeEvent.text;
-						setNewName(input);
-					}}
-					style={{ height: 30, borderColor: "gray", borderWidth: 1 }}
-				></TextInput>
-				<Button title="Submit" onPress={handleSignUp}></Button>
-			</Overlay>
-		</View>
-	);
+        <Text>Sign up:</Text>
+        <TextInput
+          placeholder="Username"
+          onChange={(e) => {
+            const input = e.nativeEvent.text;
+            setNewUsername(input);
+          }}
+          style={{ height: 30, borderColor: "gray", borderWidth: 1 }}
+        ></TextInput>
+        <TextInput
+          placeholder="First name"
+          onChange={(e) => {
+            const input = e.nativeEvent.text;
+            setNewName(input);
+          }}
+          style={{ height: 30, borderColor: "gray", borderWidth: 1 }}
+        ></TextInput>
+        <Button title="Submit" onPress={handleSignUp}></Button>
+      </Overlay>
+    </View>
+  );
 };
-
-//onBackdropPress={toggleOverlay}
