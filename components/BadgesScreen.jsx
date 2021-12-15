@@ -7,16 +7,22 @@ export const BadgesScreen = ({ navigation, badgeMessage }) => {
 	const { user } = useContext(userContext);
 	const [badges, setBadges] = useState([]);
 	const [data, setData] = useState([]);
+	const [url, setUrl] = useState([]);
 	let error = "";
+	console.log(badgeMessage);
 	useEffect(() => {
 		getAllBadges()
 			.then((badgesFromApi) => {
-				setBadges(badgesFromApi);
+				if (badgesFromApi) {
+					setBadges(badgesFromApi);
+				}
 			})
 			.catch((err) => {
 				error = "Something has gone wrong!";
 			});
 	}, [user, badgeMessage]);
+	let badgeArr = [];
+	let greyBadgeArr = [];
 	useEffect(() => {
 		getUser(user)
 			.then((dataFromApi) => {
@@ -26,16 +32,11 @@ export const BadgesScreen = ({ navigation, badgeMessage }) => {
 				error = "Something has gone wrong!";
 			});
 	}, [user, badgeMessage]);
-	const badgeArr = [];
-	let greyBadgeArr = [];
 	if (data.length === 0) greyBadgeArr = badges;
 	badges.forEach((badge) => {
 		return data.forEach((userBadge) => {
-			if (badge.name === userBadge.name) {
+			if (badge === userBadge && !badgeArr.includes(badge)) {
 				badgeArr.push(badge);
-			}
-			if (!greyBadgeArr.includes(badge) && !badgeArr.includes(badge)) {
-				greyBadgeArr.push(badge);
 			}
 		});
 	});
