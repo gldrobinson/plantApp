@@ -17,7 +17,7 @@ const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 
 export default function App() {
-    const [user, updateUser] = useState("holly34");
+    const [user, updateUser] = useState("");
     const [weekCount, setWeekCount] = useState(0);
     const [currentStreak, setCurrentStreak] = useState(0);
     const [signUpDate, setSignUpDate] = useState(null);

@@ -1,4 +1,5 @@
 const badgeFunc = (userData) => {
+	console.log("in func");
 	let message;
 	if (
 		userData.streak.highestStreak === 1 &&
@@ -102,6 +103,7 @@ const badgeFunc = (userData) => {
 			"You have earned the 5 different seeds badge!\nCheck the badges page to see your new badge!";
 	}
 	if (vegetables.length === 5) {
+		console.log("here");
 		userData.badges.push({
 			name: "5 vegetables",
 			img_url: "https://i.postimg.cc/50mmxQBy/mushroom-badge.png",
@@ -178,7 +180,6 @@ const badgeFunc = (userData) => {
 		message =
 			"You have earned the 5 different herbs and spices badge!\nCheck the badges page to see your new badge!";
 	}
-
 	return message;
 };
 
