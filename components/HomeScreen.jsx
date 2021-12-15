@@ -65,10 +65,12 @@ export const HomeScreen = () => {
 				<Text style={styles.weeklyCount}>{weekCount}</Text>
 			</View>
 			<View style={styles.streakContainer}>
-				<View style={styles.currentStreak}>Streak : {currentStreak}</View>
+				<View style={styles.currentStreak}>
+					<Text>Streak : {currentStreak}</Text>
+				</View>
 				<View style={styles.space}></View>
 				<View style={styles.highestStreak}>
-					Highest Streak: {highestStreak}
+					<Text>Highest Streak: {highestStreak}</Text>
 				</View>
 			</View>
 			<Text style={styles.plantsToGo}>
