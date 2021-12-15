@@ -18,27 +18,39 @@ export const badgeFunc = (userData) => {
 		return badge.name;
 	});
 	let message = "";
-	if (userData["streak"].currentStreak === 1 && !filter.includes(oneWeek)) {
+	if (
+		userData["streak"].currentStreak === 1 &&
+		!filter.includes(oneWeek.name)
+	) {
 		addBadge(userData.username, oneWeek);
 		message =
 			"You have earned the 1 week badge!\nCheck the badges page to see your new badge!";
 	}
-	if (userData["streak"].currentStreak === 2 && !filter.includes(twoWeeks)) {
+	if (
+		userData["streak"].currentStreak === 2 &&
+		!filter.includes(twoWeeks.name)
+	) {
 		addBadge(user, twoWeeks);
 		message =
 			"You have earned the 2 weeks badge!\n Check the badges page to see your new badge!";
 	}
-	if (userData["streak"].currentStreak === 4 && !filter.includes(oneMonth)) {
+	if (
+		userData["streak"].currentStreak === 4 &&
+		!filter.includes(oneMonth.name)
+	) {
 		addBadge(user, oneMonth);
 		message =
 			"You have earned the 1 month badge!\nCheck the badges page to see your new badge!";
 	}
-	if (userData.userPlants.length === 30 && !filter.includes(thirtyPlants)) {
+	if (
+		userData.userPlants.length === 30 &&
+		!filter.includes(thirtyPlants.name)
+	) {
 		addBadge(user, thirtyPlants);
 		message =
 			"You have earned the 30 different plants badge!\nCheck the badges page to see your new badge!";
 	}
-	if (userData.userPlants.length === 60 && filter.includes(sixtyPlants)) {
+	if (userData.userPlants.length === 60 && filter.includes(sixtyPlants.name)) {
 		addBadge(user, sixtyPlants);
 		message =
 			"You have earned the 60 different plants badge!\nCheck the badges page to see your new badge!";
@@ -61,7 +73,7 @@ export const badgeFunc = (userData) => {
 	const herbsAndSpices = userData["userPlants"].filter((plant) => {
 		if (plant.cateogory === "herbs-and-spices") return plant;
 	});
-	if (seeds.length >= 5 && !filter.includes(fiveSeeds)) {
+	if (seeds.length >= 5 && !filter.includes(fiveSeeds.name)) {
 		addBadge(userData.username, fiveSeeds);
 		message =
 			"You have earned the 5 different seeds badge!\nCheck the badges page to see your new badge!";
