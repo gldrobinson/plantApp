@@ -4,7 +4,6 @@ import AutocompleteInput from "react-native-autocomplete-input";
 import { getPlants } from "../Api/getApi";
 import { updateCurrentWeek } from "../Api/patchApi";
 import { userContext } from "../contexts/userContext";
-
 import { badgeFunc } from "../badge-utils";
 export const AutoInput = ({ weekCount, setWeekCount, setBadgeMessage }) => {
 	const { user } = useContext(userContext);
