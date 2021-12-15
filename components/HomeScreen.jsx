@@ -23,9 +23,12 @@ export const HomeScreen = () => {
 		getUser(user)
 			.then((userData) => {
 				setUserInfo(userData);
-				setNewBadge(badgeFunc(userData));
 				setWeekCount(userData.currentWeek.length);
+				setHighestStreak(userData.streak.highestStreak);
 				setCurrentStreak(userData.streak.currentStreak);
+				if (setDisplayedBadge === false) {
+					setNewBadge(badgeFunc(userData));
+				}
 			})
 			.then((userData) => {
 				if (day === 0) {
@@ -35,7 +38,7 @@ export const HomeScreen = () => {
 			.catch((err) => {
 				console.log(err);
 			});
-	}, [user]);
+	}, [user, displayedBadge, currentStreak]);
 	useEffect(() => {
 		if (weekCount === 30) {
 			setCurrentStreak(currentStreak + 1);
@@ -74,7 +77,11 @@ export const HomeScreen = () => {
 			</Text>
 			{badge()}
 			<Text style={styles.addPlant}>Add a new plant</Text>
-			<AutoInput weekCount={weekCount} setWeekCount={setWeekCount} />
+			<AutoInput
+				weekCount={weekCount}
+				setWeekCount={setWeekCount}
+				displayedBadge={displayedBadge}
+			/>
 		</View>
 	);
 };
