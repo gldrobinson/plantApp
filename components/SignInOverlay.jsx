@@ -24,6 +24,7 @@ export const SignInOverlay = ({
   const [newUsername, setNewUsername] = useState("");
   const [newName, setNewName] = useState("");
   const [usernameMessage, setUsernameMessage] = useState("");
+  const [signUpMessage, setSignUpMessage] = useState("");
   const logoUrl = "https://i.postimg.cc/rpB4dCn6/logo-rooting.png";
 
   const toggleOverlay = () => {
@@ -57,15 +58,19 @@ export const SignInOverlay = ({
   };
 
   const handleSignUp = () => {
-    addUser({
-      username: newUsername,
-      name: newName,
-    }).then((user) => {
-      updateUser(user.username);
-      setWeekCount(user.currentWeek.length);
-      setCurrentStreak(user.streak.currentStreak);
-      setSignUpDate(getDateForTimer());
-    });
+    if (newName === "" || newUsername === "") {
+      setSignUpMessage("Please enter your name and username");
+    } else {
+      addUser({
+        username: newUsername,
+        name: newName,
+      }).then((user) => {
+        updateUser(user.username);
+        setWeekCount(user.currentWeek.length);
+        setCurrentStreak(user.streak.currentStreak);
+        setSignUpDate(getDateForTimer());
+      });
+    }
   };
 
   return (
@@ -107,6 +112,7 @@ export const SignInOverlay = ({
           }}
           style={{ height: 30, borderColor: "gray", borderWidth: 1 }}
         ></TextInput>
+        <Text>{signUpMessage}</Text>
         <Button title="Submit" onPress={handleSignUp}></Button>
       </Overlay>
     </View>
