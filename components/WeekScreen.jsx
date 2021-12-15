@@ -10,7 +10,6 @@ export const WeekScreen = () => {
     const [allPlants, setAllPlants] = useState([]);
 
     useEffect(() => {
-        console.log(user);
         getCurrentWeeksPlants(user)
             .then((plants) => {
                 setCurrentWeeksPlants(plants);
@@ -53,12 +52,14 @@ export const WeekScreen = () => {
     return (
         <View style={styles.container}>
             <ScrollView>
-                <Text style={styles.weekSubHeader}>Your week so far</Text>
-
-                <FoodCards displayPlants={weekToDisplay} />
-
+                <Text style={styles.weekSubHeader}>My week so far</Text>
+                <View style={styles.scrollers}>
+                    <FoodCards displayPlants={weekToDisplay} />
+                </View>
                 <Text style={styles.weekSubHeader}>Suggestions</Text>
-                <FoodCards displayPlants={filteredPlants} />
+                <View style={styles.scrollers}>
+                    <FoodCards displayPlants={filteredPlants} />
+                </View>
                 {/* <Text>Recipes</Text>
                 <ScrollView horizontal={true}>
                     <Text style={styles.scrollCard}>1</Text>
@@ -75,16 +76,27 @@ export const WeekScreen = () => {
 
 const styles = StyleSheet.create({
     weekSubHeader: {
-        fontSize: 22,
+        fontSize: 26,
         fontFamily: "System",
         fontWeight: "bold",
         textAlign: "center",
         alignItems: "center",
         paddingBottom: 5,
-        paddingTop: 3,
+        paddingTop: 15,
         color: "#01937C",
     },
+    scrollers: {
+        marginBottom: 10,
+        shadowColor: "#000",
+        shadowOffset: {
+            width: 0,
+            height: 10,
+        },
+        shadowOpacity: 0.55,
+        shadowRadius: 14,
+    },
     container: {
+        height: "100%",
         alignContent: "center",
         backgroundColor: "#FFC074",
     },
