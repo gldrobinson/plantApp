@@ -8,10 +8,9 @@ import { updateStreak } from "../Api/patchApi";
 import { resetWeek } from "../Api/patchApi";
 import { ScrollView } from "react-native-gesture-handler";
 
-export const HomeScreen = () => {
+export const HomeScreen = ({weekCount, setWeekCount}) => {
 	const { user } = useContext(userContext);
 	const [userInfo, setUserInfo] = useState({});
-	const [weekCount, setWeekCount] = useState(0);
 	const [currentStreak, setCurrentStreak] = useState(0);
 	const [highestStreak, setHighestStreak] = useState(0);
 	const [badgeMessage, setBadgeMessage] = useState("");

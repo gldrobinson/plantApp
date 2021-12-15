@@ -4,7 +4,7 @@ import { FoodCards } from "./FoodCards";
 import { getCurrentWeeksPlants, getPlants } from "../Api/getApi";
 import { userContext } from "../contexts/userContext";
 
-export const WeekScreen = () => {
+export const WeekScreen = ({weekCount}) => {
 	const { user } = useContext(userContext);
 	const [currentWeeksPlants, setCurrentWeeksPlants] = useState([]);
 	const [allPlants, setAllPlants] = useState([]);
@@ -17,7 +17,7 @@ export const WeekScreen = () => {
 			.then((err) => {
 				console.log(err);
 			});
-	}, [user]);
+	}, [user, weekCount]);
 
 	useEffect(() => {
 		getPlants()

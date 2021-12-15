@@ -11,7 +11,6 @@ import { InfoScreen } from "./components/InfoScreen";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { userContext } from "./contexts/userContext";
 import { SignInOverlay } from "./components/SignInOverlay";
-import { Logout } from "./components/Logout";
 import { Icon } from "react-native-elements";
 
 const Stack = createNativeStackNavigator();
@@ -79,7 +78,10 @@ export default function App() {
                     />
                     <Tab.Screen
                         name="Your week"
-                        component={WeekScreen}
+                        children={() => (
+							<WeekScreen
+							weekCount={weekCount}
+							 />)} 
                         options={{
                             tabBarIcon: (tabInfo) => (
                                 <Icon
