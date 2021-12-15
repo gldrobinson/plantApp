@@ -1,9 +1,10 @@
 import { Button, Text, Image } from "react-native";
 import { ScrollView } from "react-native-gesture-handler";
 import { getAllBadges, getUser } from "../Api/getApi";
-import React, { useState, useEffect } from "react";
-
+import React, { useState, useEffect, useContext } from "react";
+import { userContext } from "../contexts/userContext";
 export const BadgesScreen = ({ navigation }) => {
+	const { user } = useContext(userContext);
 	const [badges, setBadges] = useState([]);
 	const [data, setData] = useState([]);
 	useEffect(() => {
@@ -16,7 +17,7 @@ export const BadgesScreen = ({ navigation }) => {
 			});
 	}, []);
 	useEffect(() => {
-		getUser("georgia123")
+		getUser(user)
 			.then((dataFromApi) => {
 				setData(dataFromApi.badges);
 			})
