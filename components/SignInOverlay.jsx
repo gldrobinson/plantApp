@@ -24,7 +24,7 @@ export const SignInOverlay = ({
 	const [newName, setNewName] = useState("");
 
 	const toggleOverlay = () => {
-		if (user === null) {
+		if (user === "") {
 			setVisible(true);
 		} else {
 			setVisible(false);
