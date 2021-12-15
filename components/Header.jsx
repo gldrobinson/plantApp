@@ -3,8 +3,10 @@ import { Image } from "react-native-elements";
 import { View, Text, StyleSheet } from "react-native";
 import { userContext } from "../contexts/userContext";
 import { getUser } from "../Api/getApi";
+import {Logout} from "./Logout"
 
-const logoUrl = "https://i.postimg.cc/rpB4dCn6/logo-rooting.png";
+// const logoUrl = "https://i.postimg.cc/rpB4dCn6/logo-rooting.png";
+const logoUrl = "https://i.postimg.cc/90xWm2bc/logo.png";
 export const Header = () => {
     const { user } = useContext(userContext);
     const [usersName, setUsersName] = useState("");
@@ -26,32 +28,57 @@ export const Header = () => {
 
     return (
         <View style={styles.container}>
+        <View style={styles.logo}>
             <Image
                 source={{
-                    uri: logoUrl,
+                   uri: logoUrl
                 }}
                 style={{
-                    width: 300,
-                    height: 100,
+                    width: 180,
+                    height: 60,
                     resizeMode: "contain",
                 }}
             />
-            <Text style={styles.hi}>{!user ? "" : `Hi ${usersName}!`}</Text>
+            </View>
+            <View style={styles.userInfo}>
+              <Text style={styles.hi}>{!user ? "" : `Hi ${usersName}!`}</Text>
+              {!user ? <View></View> : <Logout style={styles.logout} />}
+            </View>
         </View>
     );
 };
-// };
+
 const styles = StyleSheet.create({
     container: {
-        backgroundColor: "#01937C",
-        display: "flex",
+        backgroundColor: "#FAF1E6",
         flexDirection: "column",
+        height: 120,
+        borderBottomWidth: 2,
+        borderBottomColor: "#FFC074"
+    },
+    userInfo: {
+        flexDirection: "row",
+        flex : 1,
+        flexWrap: "wrap",
         alignItems: "center",
+        justifyContent: "space-between",
+        backgroundColor: "#FAF1E6",
+        paddingBottom: 10
+        
+    },
+    logo: {
+        flex : 2,
+        justifyContent: "center",
+        alignItems: "center",
+        paddingTop: 5,
+        paddingBottom: 5
     },
     hi: {
-        color: "#FFC074",
+        color: "black",
         textAlign: "center",
         fontSize: 18,
         fontWeight: "bold",
+        paddingLeft: 20,
+        textTransform: "capitalize"
     },
 });
