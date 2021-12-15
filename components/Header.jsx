@@ -10,44 +10,50 @@ export const Header = () => {
     const [usersName, setUsersName] = useState("");
 
     useEffect(() => {
-        getUser(user)
-            .then((data) => {
-                setUsersName(data.name);
-            })
-            .then((err) => {
-                console.log(err);
-            });
-    }, []);
+        console.log(user);
+        if (!user) {
+            setUsersName("");
+        } else {
+            getUser(user)
+                .then((data) => {
+                    console.log(data);
+                    setUsersName(data.name);
+                })
+                .then((err) => {
+                    console.log(err);
+                });
+        }
+    }, [user]);
 
-    if (!user) {
-        return (
-            <View style={styles.container}>
-                <Image
-                    source={{
-                        uri: logoUrl,
-                    }}
-                    style={{ width: 300, height: 100, resizeMode: "contain" }}
-                />
-            </View>
-        );
-    } else {
-        return (
-            <View style={styles.container}>
-                <Image
-                    source={{
-                        uri: logoUrl,
-                    }}
-                    style={{
-                        width: 300,
-                        height: 100,
-                        resizeMode: "contain",
-                    }}
-                />
-                <Text style={styles.hi}>Hi {usersName}!</Text>
-            </View>
-        );
-    }
+    // if (!user) {
+    //     return (
+    //         <View style={styles.container}>
+    //             <Image
+    //                 source={{
+    //                     uri: logoUrl,
+    //                 }}
+    //                 style={{ width: 300, height: 100, resizeMode: "contain" }}
+    //             />
+    //         </View>
+    //     );
+    // } else {
+    return (
+        <View style={styles.container}>
+            <Image
+                source={{
+                    uri: logoUrl,
+                }}
+                style={{
+                    width: 300,
+                    height: 100,
+                    resizeMode: "contain",
+                }}
+            />
+            <Text style={styles.hi}>Hi{" " + usersName}!</Text>
+        </View>
+    );
 };
+// };
 const styles = StyleSheet.create({
     container: {
         backgroundColor: "#01937C",
