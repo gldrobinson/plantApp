@@ -30,3 +30,14 @@ export const updateStreak = (username, streakBool) => {
 			return res;
 		});
 };
+
+export const addBadge = (username, badge) => {
+	return plantAppApi
+		.patch(`/users/${username}/badges`, badge)
+		.then((res) => {
+			return res;
+		})
+		.catch((err) => {
+			console.log(err);
+		});
+};

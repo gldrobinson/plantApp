@@ -4,9 +4,8 @@ import AutocompleteInput from "react-native-autocomplete-input";
 import { getPlants } from "../Api/getApi";
 import { updateCurrentWeek } from "../Api/patchApi";
 import { userContext } from "../contexts/userContext";
-import badgeFunc from "../badge-utils";
-
-export const AutoInput = ({ weekCount, setWeekCount }) => {
+import { badgeFunc } from "../badge-utils";
+export const AutoInput = ({ weekCount, setWeekCount, setBadgeMessage }) => {
 	const { user } = useContext(userContext);
 	const [selectedValue, setSelectedValue] = useState("");
 	const [plantData, setPlantData] = useState([]);
@@ -38,6 +37,7 @@ export const AutoInput = ({ weekCount, setWeekCount }) => {
 	}
 
 	const handleOnSubmit = () => {
+		let message;
 		// if no value is inputted, return a message for the user.
 		if (selectedValue === "") {
 			setPlaceholderText(
@@ -61,7 +61,13 @@ export const AutoInput = ({ weekCount, setWeekCount }) => {
 						setWeekCount((currentCount) => {
 							return currentCount + 1;
 						});
-						badgeFunc(userData);
+						return userData;
+					})
+					.then((userData) => {
+						return badgeFunc(userData);
+					})
+					.then((res) => {
+						setBadgeMessage(res);
 					})
 					.catch((err) => {
 						// if food selected already exists in week, return a message for the user.
