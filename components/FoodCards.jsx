@@ -67,5 +67,14 @@ const styles = StyleSheet.create({
     container: {
         alignContent: "center",
         backgroundColor: "#FAF1E6",
+        paddingTop: 10,
+        paddingBottom: 10,
+        shadowColor: "#000",
+        shadowOffset: {
+            width: 0,
+            height: 0,
+        },
+        shadowOpacity: 0.55,
+        shadowRadius: 14,
     },
 });

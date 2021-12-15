@@ -178,7 +178,6 @@ const badgeFunc = (userData) => {
 		message =
 			"You have earned the 5 different herbs and spices badge!\nCheck the badges page to see your new badge!";
 	}
-
 	return message;
 };
 
