@@ -9,15 +9,15 @@ export const Header = () => {
     const { user } = useContext(userContext);
     const [usersName, setUsersName] = useState("");
 
-    useEffect(() => {
-        getUser(user)
-            .then((data) => {
-                setUsersName(data.name);
-            })
-            .then((err) => {
-                console.log(err);
-            });
-    }, []);
+    // useEffect(() => {
+    //     getUser(user)
+    //         .then((data) => {
+    //             setUsersName(data.name);
+    //         })
+    //         .then((err) => {
+    //             console.log(err);
+    //         });
+    // }, []);
 
     if (!user) {
         return (
