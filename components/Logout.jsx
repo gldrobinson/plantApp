@@ -9,23 +9,19 @@ export const Logout = () => {
     };
     return (
         <View style={styles.container}>
-            <Button
-                title="Logout"
-                onPress={handlePress}
-                color= "black"
-            ></Button>
+            <Button title="LOGOUT" onPress={handlePress} color="black"></Button>
         </View>
     );
 };
 const styles = StyleSheet.create({
     container: {
         backgroundColor: "#FAF1E6",
-        paddingRight: 20
+        paddingRight: 20,
     },
     // logout: {
     //     width: 10,
     //     color: "black",
     //     alignItems: "flex-end",
-        
+
     // },
 });

@@ -63,7 +63,7 @@ export const HomeScreen = ({
                 }}
                 behavior="position"
                 enabled
-                keyboardVerticalOffset={100}
+                keyboardVerticalOffset={150}
             >
                 <View style={styles.container}>
                     <Text style={styles.weekTitle}>My Week So Far</Text>
