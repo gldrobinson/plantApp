@@ -6,8 +6,8 @@ import { userContext } from "../contexts/userContext";
 export const BadgesScreen = ({ navigation, badgeMessage }) => {
 	const { user } = useContext(userContext);
 	const [badges, setBadges] = useState([]);
-	const [data, setData] = useState([]);
-	const [url, setUrl] = useState([]);
+	const [userBadges, setUserBadges] = useState([]);
+	//const [url, setUrl] = useState([]);
 	let error = "";
 	console.log(badgeMessage);
 	useEffect(() => {
@@ -21,28 +21,66 @@ export const BadgesScreen = ({ navigation, badgeMessage }) => {
 				error = "Something has gone wrong!";
 			});
 	}, [user, badgeMessage]);
+
 	let badgeArr = [];
 	let greyBadgeArr = [];
+
 	useEffect(() => {
 		getUser(user)
 			.then((dataFromApi) => {
-				if (dataFromApi) return setData(dataFromApi.badges);
+				if (dataFromApi) return setUserBadges(dataFromApi.badges);
 			})
 			.then((err) => {
 				error = "Something has gone wrong!";
 			});
 	}, [user, badgeMessage]);
-	if (data.length === 0) greyBadgeArr = badges;
-	badges.forEach((badge) => {
-		return data.forEach((userBadge) => {
-			if (badge === userBadge && !badgeArr.includes(badge)) {
-				badgeArr.push(badge);
-			}
-		});
-	});
 
+
+
+	badges.forEach((badge) => {
+		userBadges.forEach((userBadge) => {
+			if (badge.name === userBadge.name) {
+				badgeArr.push(badge.name)
+			}
+		})
+	})
+
+	badges.forEach((badge) => {
+		if (!badgeArr.includes(badge.name)) {
+			greyBadgeArr.push(badge)
+		}
+	})
+
+	// greyBadgeArr = badges.filter((badge) => {
+	// 	return !badgeArr.includes(badge.name)
+	// })
+
+	console.log(greyBadgeArr)
+
+	// if (userBadges.length === 0) {
+
+	// 	greyBadgeArr = badges;
+	// } else {
+	// 	greyBadgeArr = badges.filter((badge) => {
+	// 		if (!userBadges.includes(badge)) {
+	// 			return badge
+	// 		}
+	// 	})
+	// }
+
+
+	// badges.forEach((badge) => {
+	// 	return userBadges.forEach((userBadge) => {
+	// 		if (badge === userBadge && !badgeArr.includes(badge)) {
+	// 			badgeArr.push(badge);
+	// 		}
+	// 	});
+	// });
+	// console.log(greyBadgeArr, "<___ grey badges arr")
+	// console.log(badges, "<--- badges")
+	// console.log(userBadges, "<--- userBadges")
 	const normalList = () => {
-		if (badgeArr.length === 0) return "";
+		// if (badgeArr.length === 0) return "";
 		// return badgeArr.map((badge) => {
 		// 	return (
 		// 		<View style={styles.badge} key={`${badge.name}`}>
@@ -73,7 +111,8 @@ export const BadgesScreen = ({ navigation, badgeMessage }) => {
 		<ScrollView>
 			<Text style={styles.badgeHeader}>My badges</Text>
 			<View style={styles.container}>
-				{badgeArr.map((badge) => {
+
+				{userBadges.map((badge) => {
 					return (
 						<View style={styles.badge} key={`${badge.name}`}>
 							<Text>{error}</Text>
@@ -85,6 +124,7 @@ export const BadgesScreen = ({ navigation, badgeMessage }) => {
 						</View>
 					);
 				})}
+
 				{greyBadgeArr.map((badge) => {
 					return (
 						<View style={styles.badge} key={badge.name}>
@@ -96,8 +136,7 @@ export const BadgesScreen = ({ navigation, badgeMessage }) => {
 						</View>
 					);
 				})}
-				{/* {normalList()} */}
-				{/* {greyList()} */}
+
 			</View>
 		</ScrollView>
 	);
