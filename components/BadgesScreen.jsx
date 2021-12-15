@@ -42,38 +42,61 @@ export const BadgesScreen = ({ navigation, badgeMessage }) => {
 
 	const normalList = () => {
 		if (badgeArr.length === 0) return "";
-		return badgeArr.map((badge) => {
-			return (
-				<View style={styles.badge} key={`${badge.name}`}>
-					<Text>{error}</Text>
-					<Image
-						source={{ uri: badge.img_url }}
-						style={{ width: 100, height: 100 }}
-					/>
-					<Text style={styles.badgeText}>{badge.name}</Text>
-				</View>
-			);
-		});
+		// return badgeArr.map((badge) => {
+		// 	return (
+		// 		<View style={styles.badge} key={`${badge.name}`}>
+		// 			<Text>{error}</Text>
+		// 			<Image
+		// 				source={{ uri: badge.img_url }}
+		// 				style={{ width: 100, height: 100 }}
+		// 			/>
+		// 			<Text style={styles.badgeText}>{badge.name}</Text>
+		// 		</View>
+		// 	);
+		// });
 	};
 	const greyList = () => {
-		return greyBadgeArr.map((badge) => {
-			return (
-				<View style={styles.badge} key={badge.name}>
-					<Image
-						source={{ uri: badge.grey_url }}
-						style={{ width: 100, height: 100 }}
-					/>
-					<Text style={styles.badgeText}>{badge.name}</Text>
-				</View>
-			);
-		});
+		// return greyBadgeArr.map((badge) => {
+		// 	return (
+		// 		<View style={styles.badge} key={badge.name}>
+		// 			<Image
+		// 				source={{ uri: badge.grey_url }}
+		// 				style={{ width: 100, height: 100 }}
+		// 			/>
+		// 			<Text style={styles.badgeText}>{badge.name}</Text>
+		// 		</View>
+		// 	);
+		// });
 	};
 	return (
 		<ScrollView>
 			<Text style={styles.badgeHeader}>My badges</Text>
 			<View style={styles.container}>
-				{normalList()}
-				{greyList()}
+				{badgeArr.map((badge) => {
+					return (
+						<View style={styles.badge} key={`${badge.name}`}>
+							<Text>{error}</Text>
+							<Image
+								source={{ uri: badge.img_url }}
+								style={{ width: 100, height: 100 }}
+							/>
+							<Text style={styles.badgeText}>{badge.name}</Text>
+						</View>
+					);
+				})}
+				{greyBadgeArr.map((badge) => {
+					return (
+						<View style={styles.badge} key={badge.name}>
+							<Image
+								source={{ uri: badge.grey_url }}
+								style={{ width: 100, height: 100 }}
+							/>
+							<Text style={styles.badgeText}>{badge.name}</Text>
+						</View>
+					);
+				})}
+				{/* {normalList()} */}
+				{/* {greyList()} */}
 			</View>
 		</ScrollView>
 	);
