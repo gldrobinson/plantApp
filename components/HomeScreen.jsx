@@ -33,7 +33,6 @@ export const HomeScreen = () => {
             })
             .catch((err) => {
                 console.log(err);
-                console.log("error with get request on Home");
             });
     }, [user]);
     useEffect(() => {
@@ -41,9 +40,6 @@ export const HomeScreen = () => {
             console.log("in week count use effect");
             setCurrentStreak(currentStreak + 1);
             updateStreak(user, true)
-                .then((res) => {
-                    console.log("made it!");
-                })
                 .catch((err) => {
                     setCurrentStreak(currentStreak - 1);
                     console.dir(err);
@@ -51,34 +47,24 @@ export const HomeScreen = () => {
         }
     }, [weekCount]);
 
-    return (
-        <View style={styles.container}>
-            <Text style={styles.weekTitle}>My Week So Far</Text>
-            <View style={styles.circleOverlay}>
-                <Text style={styles.weeklyCount}>{weekCount}</Text>
-            </View>
-            <View style={styles.streakContainer}>
-                <View style={styles.currentStreak}>
-                    <Text>{currentStreak}</Text>
-                </View>
-                <View style={styles.highestStreak}>
-                    <Text>{highestStreak}</Text>
-                </View>
-            </View>
-            <Text style={styles.plantsToGo}>
-                {" "}
-                {30 - weekCount > 0
-                    ? `Only ${30 - weekCount} to go!`
-                    : `Congratulations! You made your 30 for the week!`}
-            </Text>
-            <Text>{newBadge ? newBadge : ""}</Text>
-            <Text style={styles.streak}>
-                Current streak {currentStreak} week(s)!
-            </Text>
-            <Text style={styles.addPlant}>Add a new plant</Text>
-            <AutoInput weekCount={weekCount} setWeekCount={setWeekCount} />
-        </View>
-    );
+
+  return (
+    <View style={styles.container}>
+      <Text style={styles.weekTitle}>My Week So Far</Text>
+      <View style={styles.circleOverlay}>
+        <Text style={styles.weeklyCount}>{weekCount}</Text>
+      </View>
+      <View style={styles.streakContainer}>
+        <View style={styles.currentStreak}>Streak : {currentStreak}</View>
+        <View style={styles.space}></View>
+        <View style={styles.highestStreak}>Highest Streak: {highestStreak}</View>
+      </View>
+      <Text style={styles.plantsToGo}> {30 - weekCount > 0 ? `Only ${30 - weekCount} to go!`: `Congratulations! You made your 30 for the week!`}</Text>
+      <Text style={styles.badges}>{newBadge ? newBadge : ""}</Text>
+      <Text style={styles.addPlant}>Add a new plant</Text>
+      <AutoInput weekCount={weekCount} setWeekCount={setWeekCount} />
+    </View>
+  );
 };
 const styles = StyleSheet.create({
     container: {
@@ -113,42 +99,47 @@ const styles = StyleSheet.create({
     },
     weeklyCount: {
         fontSize: 80,
-        // textAlign: "center",
         fontWeight: "bold",
         alignItems: "center",
         justifyContent: "center",
     },
     streakContainer: {
-        flex: 1,
         flexDirection: "row",
         alignItems: "center",
         justifyContent: "space-evenly",
-        padding: 10,
-        margin: 10,
+        height: 70,
+        paddingTop: 20
     },
     currentStreak: {
-        width: 120,
-        height: 120,
+        width: 150,
+        height: 50,
         backgroundColor: "#FFC074",
-        borderRadius: 120 / 2,
+        borderRadius: 5,
         justifyContent: "center",
         alignItems: "center",
     },
+    space : {
+      padding: 10,
+    },
     highestStreak: {
-        width: 120,
-        height: 120,
+        width: 150,
+        height: 50,
         backgroundColor: "#FFC074",
-        borderRadius: 120 / 2,
+        borderRadius: 5,
         justifyContent: "center",
         alignItems: "center",
     },
     plantsToGo: {
         paddingTop: 20,
         fontSize: 20,
+        paddingBottom: 10,
     },
-    streak: {
-        paddingTop: 10,
-        fontSize: 20,
+    badges : {
+
+      borderWidth: 1,
+      fontSize: 14,
+      textAlign : "center",
+      padding: 10
     },
     addPlant: {
         fontFamily: "System",
@@ -156,4 +147,5 @@ const styles = StyleSheet.create({
         fontWeight: "bold",
         paddingTop: 15,
     },
+
 });
