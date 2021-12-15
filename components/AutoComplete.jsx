@@ -4,9 +4,9 @@ import AutocompleteInput from "react-native-autocomplete-input";
 import { getPlants } from "../Api/getApi";
 import { updateCurrentWeek } from "../Api/patchApi";
 import { userContext } from "../contexts/userContext";
-import badgeFunc from "../badge-utils";
 
-export const AutoInput = ({ weekCount, setWeekCount }) => {
+import { badgeFunc } from "../badge-utils";
+export const AutoInput = ({ weekCount, setWeekCount, setBadgeMessage }) => {
 	const { user } = useContext(userContext);
 	const [selectedValue, setSelectedValue] = useState("");
 	const [plantData, setPlantData] = useState([]);
@@ -65,24 +65,25 @@ export const AutoInput = ({ weekCount, setWeekCount }) => {
 						return userData;
 					})
 					.then((userData) => {
-						console.log(userData);
-						badgeFunc(userData);
+						return badgeFunc(userData);
+					})
+					.then((res) => {
+						setBadgeMessage(res);
 					})
 					.catch((err) => {
 						// if food selected already exists in week, return a message for the user.
-						// if (
-						// 	err.response.data.message ===
-						// 	"Plant already added to current week"
-						// ) {
-						setPlaceholderText(
-							"It looks like you've already added that food this week! Why not try something new!"
-						);
-						// }
-						// else {
-						// 	setPlaceholderText(
-						// 		"Oops something went wrong! Please try again :)"
-						// 	);
-						// }
+						if (
+							err.response.data.message ===
+							"Plant already added to current week"
+						) {
+							setPlaceholderText(
+								"It looks like you've already added that food this week! Why not try something new!"
+							);
+						} else {
+							setPlaceholderText(
+								"Oops something went wrong! Please try again :)"
+							);
+						}
 					});
 			}
 		}

@@ -13,89 +13,90 @@ import {
 	tenFruits,
 	fiveHerbs,
 } from "./badges";
-
 export const badgeFunc = (userData) => {
-	console.log("in function");
-	let message;
-	if (userData.streak.highestStreak === 0) {
-		addBadge(user, oneWeek);
+	const filter = userData.badges.map((badge) => {
+		return badge.name;
+	});
+	let message = "";
+	if (userData["streak"].currentStreak === 1 && !filter.includes(oneWeek)) {
+		addBadge(userData.username, oneWeek);
 		message =
 			"You have earned the 1 week badge!\nCheck the badges page to see your new badge!";
 	}
-	if (userData.streak.highestStreak === 2) {
+	if (userData["streak"].currentStreak === 2 && !filter.includes(twoWeeks)) {
 		addBadge(user, twoWeeks);
 		message =
 			"You have earned the 2 weeks badge!\n Check the badges page to see your new badge!";
 	}
-	if (userData.streak.highestStreak === 4) {
+	if (userData["streak"].currentStreak === 4 && !filter.includes(oneMonth)) {
 		addBadge(user, oneMonth);
 		message =
 			"You have earned the 1 month badge!\nCheck the badges page to see your new badge!";
 	}
-	if (userData.userPlants.length === 30) {
+	if (userData.userPlants.length === 30 && !filter.includes(thirtyPlants)) {
 		addBadge(user, thirtyPlants);
 		message =
 			"You have earned the 30 different plants badge!\nCheck the badges page to see your new badge!";
 	}
-	if (userData.userPlants.length === 60) {
+	if (userData.userPlants.length === 60 && filter.includes(sixtyPlants)) {
 		addBadge(user, sixtyPlants);
 		message =
 			"You have earned the 60 different plants badge!\nCheck the badges page to see your new badge!";
 	}
-	const seeds = userData.userPlants.filter((plant) => {
-		if (plant.category === "seeds") return plant;
+	const seeds = userData["userPlants"].filter((plant) => {
+		if (plant.cateogory === "seeds") return plant;
 	});
-	const vegetables = userData.userPlants.filter((plant) => {
-		if (plant.category === "vegetables") return plant;
+	const vegetables = userData["userPlants"].filter((plant) => {
+		if (plant.cateogory === "vegetables") return plant;
 	});
-	const fruits = userData.userPlants.filter((plant) => {
-		if (plant.category === "fruits") return plant;
+	const fruits = userData["userPlants"].filter((plant) => {
+		if (plant.cateogory === "fruits") return plant;
 	});
-	const nuts = userData.userPlants.filter((plant) => {
-		if (plant.category === "nuts") return plant;
+	const nuts = userData["userPlants"].filter((plant) => {
+		if (plant.cateogory === "nuts") return plant;
 	});
-	const grains = userData.userPlants.filter((plant) => {
-		if (plant.category === "grains") return plant;
+	const grains = userData["userPlants"].filter((plant) => {
+		if (plant.cateogory === "grains") return plant;
 	});
-	const herbsAndSpices = userData.userPlants.filter((plant) => {
-		if (plant.category === "herbs-and-spices") return plant;
+	const herbsAndSpices = userData["userPlants"].filter((plant) => {
+		if (plant.cateogory === "herbs-and-spices") return plant;
 	});
-	if (seeds.length === 5) {
+	if (seeds.length >= 5 && !filter.includes(fiveSeeds)) {
 		addBadge(user, fiveSeeds);
 		message =
 			"You have earned the 5 different seeds badge!\nCheck the badges page to see your new badge!";
 	}
-	if (vegetables.length === 5) {
+	if (vegetables.length >= 5 && !filter.includes(fiveVeg.name)) {
 		addBadge(user, fiveVeg);
 		message =
 			"You have earned the 5 different vegetables badge!\nCheck the badges page to see your new badge!";
 	}
-	if (vegetables.length === 10) {
+	if (vegetables.length >= 10 && !filter.includes(tenVeg.name)) {
 		addBadge(user, tenVeg);
 		message =
 			"You have earned the 10 different vegetables badge!\nCheck the badges page to see your new badge!";
 	}
-	if (nuts.length === 5) {
+	if (nuts.length >= 5 && !filter.includes(fiveNuts.name)) {
 		addBadge(user, fiveNuts);
 		message =
 			"You have earned the 5 different nuts badge!\nCheck the badges page to see your new badge!";
 	}
-	if (grains.length === 5) {
+	if (grains.length >= 5 && !filter.includes(fiveGrains.name)) {
 		addBadge(user, fiveGrains);
 		message =
 			"You have earned the 5 different grains badge!\nCheck the badges page to see your new badge!";
 	}
-	if (fruits.length === 5) {
+	if (fruits.length >= 5 && !filter.includes(fiveFruits.name)) {
 		addBadge(user, fiveFruits);
 		message =
 			"You have earned the 5 different fruits badge!\nCheck the badges page to see your new badge!";
 	}
-	if (fruits.length === 10) {
+	if (fruits.length >= 10 && !filter.includes(tenFruits.name)) {
 		addBadge(user, tenFruits);
 		message =
 			"You have earned the 10 different fruits badge!\nCheck the badges page to see your new badge!";
 	}
-	if (herbsAndSpices.length === 5) {
+	if (herbsAndSpices.length >= 5 && !filter.includes(fiveHerbs.name)) {
 		addBadge(user, fiveHerbs);
 		message =
 			"You have earned the 5 different herbs and spices badge!\nCheck the badges page to see your new badge!";

@@ -13,6 +13,7 @@ export const HomeScreen = () => {
 	const [weekCount, setWeekCount] = useState(0);
 	const [currentStreak, setCurrentStreak] = useState(0);
 	const [highestStreak, setHighestStreak] = useState(0);
+	const [badgeMessage, setBadgeMessage] = useState("");
 	const date = new Date();
 	const day = date.getDay();
 
@@ -42,7 +43,6 @@ export const HomeScreen = () => {
 			});
 		}
 	}, [weekCount]);
-
 	return (
 		<View style={styles.container}>
 			<Text style={styles.weekTitle}>My Week So Far</Text>
@@ -61,9 +61,14 @@ export const HomeScreen = () => {
 				{30 - weekCount > 0
 					? `Only ${30 - weekCount} to go!`
 					: `Congratulations! You made your 30 for the week!`}
+				{`\n${badgeMessage}`}
 			</Text>
 			<Text style={styles.addPlant}>Add a new plant</Text>
-			<AutoInput weekCount={weekCount} setWeekCount={setWeekCount} />
+			<AutoInput
+				weekCount={weekCount}
+				setWeekCount={setWeekCount}
+				setBadgeMessage={setBadgeMessage}
+			/>
 		</View>
 	);
 };
