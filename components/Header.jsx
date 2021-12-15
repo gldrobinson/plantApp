@@ -10,7 +10,6 @@ export const Header = () => {
     const [usersName, setUsersName] = useState("");
 
     useEffect(() => {
-        console.log(user);
         if (!user) {
             setUsersName("");
         } else {
@@ -25,18 +24,6 @@ export const Header = () => {
         }
     }, [user]);
 
-    // if (!user) {
-    //     return (
-    //         <View style={styles.container}>
-    //             <Image
-    //                 source={{
-    //                     uri: logoUrl,
-    //                 }}
-    //                 style={{ width: 300, height: 100, resizeMode: "contain" }}
-    //             />
-    //         </View>
-    //     );
-    // } else {
     return (
         <View style={styles.container}>
             <Image
@@ -49,7 +36,7 @@ export const Header = () => {
                     resizeMode: "contain",
                 }}
             />
-            <Text style={styles.hi}>Hi{" " + usersName}!</Text>
+            <Text style={styles.hi}>{!user ? "" : `Hi ${usersName}!`}</Text>
         </View>
     );
 };
