@@ -89,8 +89,9 @@ export const HomeScreen = ({
                         {30 - weekCount > 0
                             ? `Only ${30 - weekCount} to go!`
                             : `Congratulations! You made your 30 for the week!`}
-                        {`\n${badgeMessage}`}
+                        
                     </Text>
+                    <Text style={styles.badgeMessage}>{badgeMessage}</Text>
                     <Text style={styles.addPlant}>Add a new plant</Text>
                     <AutoInput
                         weekCount={weekCount}
@@ -167,8 +168,14 @@ const styles = StyleSheet.create({
     },
     plantsToGo: {
         paddingTop: 20,
-        fontSize: 20,
+        fontSize: 18,
         paddingBottom: 10,
+    },  
+    badgeMessage : {
+        fontSize: 16,
+        fontWeight: "bold",
+        fontStyle: "italic",
+        textAlign: "center",
     },
     badges: {
         borderWidth: 1,
