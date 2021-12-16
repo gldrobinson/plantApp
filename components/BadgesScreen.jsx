@@ -35,84 +35,24 @@ export const BadgesScreen = ({ navigation, badgeMessage }) => {
 			});
 	}, [user, badgeMessage]);
 
-
-
 	badges.forEach((badge) => {
 		userBadges.forEach((userBadge) => {
 			if (badge.name === userBadge.name) {
-				badgeArr.push(badge.name)
+				badgeArr.push(badge.name);
 			}
-		})
-	})
+		});
+	});
 
 	badges.forEach((badge) => {
 		if (!badgeArr.includes(badge.name)) {
-			greyBadgeArr.push(badge)
+			greyBadgeArr.push(badge);
 		}
-	})
+	});
 
-	// greyBadgeArr = badges.filter((badge) => {
-	// 	return !badgeArr.includes(badge.name)
-	// })
-
-	console.log(greyBadgeArr)
-	console.log(badgeMessage, " < -- badge message")
-
-	// if (userBadges.length === 0) {
-
-	// 	greyBadgeArr = badges;
-	// } else {
-	// 	greyBadgeArr = badges.filter((badge) => {
-	// 		if (!userBadges.includes(badge)) {
-	// 			return badge
-	// 		}
-	// 	})
-	// }
-
-
-	// badges.forEach((badge) => {
-	// 	return userBadges.forEach((userBadge) => {
-	// 		if (badge === userBadge && !badgeArr.includes(badge)) {
-	// 			badgeArr.push(badge);
-	// 		}
-	// 	});
-	// });
-	// console.log(greyBadgeArr, "<___ grey badges arr")
-	// console.log(badges, "<--- badges")
-	// console.log(userBadges, "<--- userBadges")
-	const normalList = () => {
-		// if (badgeArr.length === 0) return "";
-		// return badgeArr.map((badge) => {
-		// 	return (
-		// 		<View style={styles.badge} key={`${badge.name}`}>
-		// 			<Text>{error}</Text>
-		// 			<Image
-		// 				source={{ uri: badge.img_url }}
-		// 				style={{ width: 100, height: 100 }}
-		// 			/>
-		// 			<Text style={styles.badgeText}>{badge.name}</Text>
-		// 		</View>
-		// 	);
-		// });
-	};
-	const greyList = () => {
-		// return greyBadgeArr.map((badge) => {
-		// 	return (
-		// 		<View style={styles.badge} key={badge.name}>
-		// 			<Image
-		// 				source={{ uri: badge.grey_url }}
-		// 				style={{ width: 100, height: 100 }}
-		// 			/>
-		// 			<Text style={styles.badgeText}>{badge.name}</Text>
-		// 		</View>
-		// 	);
-		// });
-	};
 	return (
 		<ScrollView>
 			<Text style={styles.badgeHeader}>My badges</Text>
 			<View style={styles.container}>
-
 				{userBadges.map((badge) => {
 					return (
 						<View style={styles.badge} key={`${badge.name}`}>
@@ -137,7 +77,6 @@ export const BadgesScreen = ({ navigation, badgeMessage }) => {
 						</View>
 					);
 				})}
-
 			</View>
 		</ScrollView>
 	);
