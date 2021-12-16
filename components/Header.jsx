@@ -17,7 +17,7 @@ export const Header = () => {
 				.then((data) => {
 					setUsersName(data.name);
 				})
-				.then((err) => {
+				.catch((err) => {
 					console.log(err);
 				});
 		}

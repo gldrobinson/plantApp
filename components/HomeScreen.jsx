@@ -29,10 +29,12 @@ export const HomeScreen = ({
 	useEffect(() => {
 		getUser(user)
 			.then((userData) => {
-				setUserInfo(userData);
-				setWeekCount(userData.currentWeek.length);
-				setHighestStreak(userData.streak.highestStreak);
-				setCurrentStreak(userData.streak.currentStreak);
+				if (userData) {
+					setUserInfo(userData);
+					setWeekCount(userData.currentWeek.length);
+					setHighestStreak(userData.streak.highestStreak);
+					setCurrentStreak(userData.streak.currentStreak);
+				}
 			})
 			.then((userData) => {
 				if (day === 0) {
