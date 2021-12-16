@@ -7,9 +7,8 @@ export const BadgesScreen = ({ navigation, badgeMessage }) => {
 	const { user } = useContext(userContext);
 	const [badges, setBadges] = useState([]);
 	const [userBadges, setUserBadges] = useState([]);
-	//const [url, setUrl] = useState([]);
+
 	let error = "";
-	console.log(badgeMessage);
 	useEffect(() => {
 		getAllBadges()
 			.then((badgesFromApi) => {
