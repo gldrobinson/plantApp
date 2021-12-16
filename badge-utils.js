@@ -12,7 +12,7 @@ import {
 	fiveFruits,
 	tenFruits,
 	fiveHerbs,
-	fiveGrains
+	fiveGrains,
 } from "./badges";
 export const badgeFunc = (userData) => {
 	const filter = userData.badges.map((badge) => {
@@ -63,13 +63,15 @@ export const badgeFunc = (userData) => {
 		if (plant.cateogory === "vegetables") return plant;
 	});
 	const fruits = userData["userPlants"].filter((plant) => {
-		if (plant.cateogory === "fruits") return plant;
+		if (plant.cateogory === "fruit" || plant.cateogory === "fruits")
+			return plant;
 	});
 	const nuts = userData["userPlants"].filter((plant) => {
 		if (plant.cateogory === "nuts") return plant;
 	});
 	const grains = userData["userPlants"].filter((plant) => {
-		if (plant.cateogory === "grains") return plant;
+		if (plant.cateogory === "grains" || plant.cateogory === "grain")
+			return plant;
 	});
 	const herbsAndSpices = userData["userPlants"].filter((plant) => {
 		if (plant.cateogory === "herbs-and-spices") return plant;
