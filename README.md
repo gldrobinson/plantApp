@@ -1,4 +1,4 @@
-# # Rooting For You
+# Rooting For You
 Rooting For You in a React Native mobile application we developed for our final project at Northcoders. 
 ## About
 
