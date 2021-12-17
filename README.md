@@ -23,12 +23,6 @@ https://github.com/gldrobinson/plantApp_backend
 The backend is hosted via Heroku and can be found here:
  https://plant-app-b-end.herokuapp.com/api
 
-The backend server is hosted through heroku which you can find here:
-https://tabletop-town.herokuapp.com/api/
-
-The git repository can be found here:
-https://github.com/gldrobinson/tabletop-town
-
 
 ## Setup
 The minimum version of node is 17.2.0 
