@@ -16,12 +16,18 @@ On the week screen, users can see all the plants they've had so far that week, a
 On the badges screen, users can see all the badges they've achieved so far. The badges not yet unlocked appear greyed out, but the user can easily see what milestones they have yet to achieve.
 
 This is the repo for the frontend application. 
-The repo for the backend application can be found here: https://github.com/gldrobinson/plantApp_backend
+
+The repo for the backend application can be found here:
+https://github.com/gldrobinson/plantApp_backend
+
 The backend is hosted via Heroku and can be found here:
  https://plant-app-b-end.herokuapp.com/api
 
-The backend server is hosted through heroku which you can find here: https://tabletop-town.herokuapp.com/api/
-The git repository can be found here: https://github.com/gldrobinson/tabletop-town
+The backend server is hosted through heroku which you can find here:
+https://tabletop-town.herokuapp.com/api/
+
+The git repository can be found here:
+https://github.com/gldrobinson/tabletop-town
 
 
 ## Setup
