@@ -1,5 +1,5 @@
 # Rooting For You
-Rooting For You in a React Native mobile application we developed for our final project at Northcoders. 
+Rooting For You is a React Native mobile application we developed for our final project at Northcoders. 
 ## About
 
 The idea came from a research study that shows that a wide variety of healthy fibres was key to maintaining a good microbiome, which plays a fundament role in our health and wellbeing. The study shows that eating at least 30 different plant fibres a week is one of the best ways to improve your microbiome health. 
