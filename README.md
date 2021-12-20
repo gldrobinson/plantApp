@@ -28,7 +28,7 @@ The backend is hosted via Heroku and can be found here:
 The minimum version of node is 17.2.0 
 ### To clone this application, please:
 
-- Fork and clone this repo onto your local machine: https://github.com/J-Coke/plantApp
+- Fork and clone this repo onto your local machine: https://github.com/gldrobinson/plantApp
 - Navigate into the directory, run the file through node.js and install the project dependencies
   ```sh
   npm install
